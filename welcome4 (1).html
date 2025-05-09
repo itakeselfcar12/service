@@ -231,8 +231,21 @@ body.dark a {
         <option value="pune.html">Pune</option> -->
       </select>
       
+      
     </div>
+    
   </nav>
+          <div class="flex items-center gap-2">
+        <button id="darkToggle" class="text-xl p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800" title="Toggle Dark Mode">🌓</button>
+        <button id="menu-toggle" class="md:hidden text-xl text-gray-800 dark:text-white p-2">☰</button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 text-gray-800 dark:text-white">
+      <a href="welcome4 (1).html" class="block py-2">Home</a>
+      <a href="car-listing (1).html" class="block py-2">Cars</a>
+      <a href="#services" class="block py-2">offers</a>
+      <a href="contact.html" class="block py-2">Contact</a>
+    </div>
     <button id="themeToggle">
       <i class="fas fa-moon"></i>
     </button>
@@ -430,6 +443,15 @@ body.dark a {
   </script>
    
    <script>
+       document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('darkToggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+    document.getElementById("rentalForm").addEventListener("submit", function (e) {
+  e.preventDefault();
     const themeToggle = document.getElementById("themeToggle");
     const icon = themeToggle.querySelector("i");
     const body = document.body;
