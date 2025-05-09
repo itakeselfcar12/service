@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-500">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Take Self - Hyderabad Rentals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<script>
+  emailjs.init("service_iszcc3f");
+</script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1E40AF',
+            accent: '#FACC15',
+          }
+        }
+      }
+    };
+  </script>
+
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-950 dark:text-white transition-colors">
+
+  <!-- Header -->
+  <header class="bg-white dark:bg-gray-900 sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="I TAKE SELF.png" alt="Logo" class="w-10 h-10 rounded-full">
+        <span class="text-2xl font-bold text-gray-900 dark:text-white">Hyderabad Rentals</span>
+      </div>
+      <nav class="hidden md:flex gap-6 text-gray-800 dark:text-white">
+        <a href="welcome4 (1).html" class="hover:text-accent">Home</a>
+        <a href="car-listing (1).html" class="hover:text-accent">Cars</a>
+        <a href="#services" class="hover:text-accent">Offers</a>
+        <a href="contact.html" class="hover:text-accent">Contact</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button id="darkToggle" class="text-xl p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800" title="Toggle Dark Mode">🌓</button>
+        <button id="menu-toggle" class="md:hidden text-xl text-gray-800 dark:text-white p-2">☰</button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 text-gray-800 dark:text-white">
+      <a href="welcome4 (1).html" class="block py-2">Home</a>
+      <a href="car-listing (1).html" class="block py-2">Cars</a>
+      <a href="#services" class="block py-2">Offers</a>
+      <a href="contact.html" class="block py-2">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-12 px-4 bg-gradient-to-r from-blue-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <h1 class="text-4xl font-bold mb-4 text-primary dark:text-accent">Explore Hyderabad's Best Rentals</h1>
+    <p class="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">Choose from a wide range of categories – fast, reliable, and affordable services across the city.</p>
+  </section>
+
+  <!-- Product Categories -->
+  <section id="categories" class="max-w-7xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-semibold mb-8 text-center text-gray-800 dark:text-white">Our Product Categories</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- 15 Categories -->
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="swift.html"> <img src="Hswift1.jpg" alt="Swift" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Swift-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 1999 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Swift – The Smart, Stylish Ride for City Adventures In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="swift.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="Baleno .html"> <img src="Hbaleno1.jpg" alt="Baleno" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Baleno-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 2299 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Suzuki Baleno – Drive Smart, Travel in Style."</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="Baleno .html">Details</a></button>
+            </div></a>
+        </div>   
+           <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="i20 sportz.html"> <img src="Hi201.jpg" alt="i20-sportz" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>I 20 sportz-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 2199 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Hyundai i20 – Bold Looks, Smarter Drives In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="i20 sportz.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="Maruti Brezza.html"> <img src="Hbrezza1.jpeg" alt="brezaa" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Brezza-Diesel-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 2499 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Brezza – Style Meets Power for Every Urban Adventure In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="Maruti Brezza.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="nexon.html"> <img src="Hnexon1.jpeg" alt="Nexon" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Nexon-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 2999 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Tata Nexon – Bold Design, Unmatched Safety, Pure Driving Confidence In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="nexon.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="verna.html"> <img src="Hverna1.jpg" alt="Verna" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Verna-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 3499 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Hyundai Verna – Sleek Performance, Premium Comfort, Redefined Elegance In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="verna.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="creta.html"> <img src="Hcerta1.jpg" alt="Creta" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Creta-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 4299 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Hyundai Creta – Bold Design, Smart Features, Built for Every Drive In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="creta.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="venue.html"> <img src="Hvenue1.jpg" alt="Venue" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Venue-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 3999 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Hyundai Venue – Compact Power, Big on Style and Tech In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="venue.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="seltos.html"> <img src="Hseltos1.jpeg" alt="Seltos" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>KIA Seltos-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 4499 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Kia Seltos – Bold Design, Smart Performance, Ultimate Comfort In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="seltos.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="alcazar.html"> <img src="Halcazar1.jpg" alt="Alcazar" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Alcazar-Petrol-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 5999 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Hyundai Alcazar – Space for Every Story, Power for Every Drive In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="alcazar.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="urbancruiser.html"> <img src="Hurban1.jpg" alt="urban-cruiser" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Urban Cruiser-Diesel-5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹ 3499 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Toyota Urban Cruiser – Compact Power, Urban Adventure In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="urbancruiser.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="ertiga.html"> <img src="Hertiga1.jpg" alt="Ertiga" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Ertiga-Petrol / CNG  Seater -7💺 </b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹3,999 / 24hrs </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Maruti Suzuki Ertiga – is the ideal MPV for families, group outings, and long-distance travelIn Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="ertiga.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="innova hybrid.html"> <img src="Hhycross1.jpg" alt="Innova Hybrid" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Innova (HyCross) Hybrid - (Petrol + Electric) Seater - 7💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹6,499/ 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Toyota Innova HyCross  – The next-generation MPV that combines powerful hybrid technology with premium comfort and style.  In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="innova hybrid.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="Fortuner 4x4.html"> <img src="HFOR1.jpeg" alt="Fortuner 4x4" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b> Fortuner 4x4-Diesel Seater-7💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹7,999  / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Toyota  Fortuner 4x4 – The Smart, Stylish Ride Take on any road with its rugged off-road capability and plush interiors. Ideal for long journeys, business trips, and weekend getaways with comfort and confidence In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="Fortuner 4x4.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="innovacrysta.html"> <img src="HCrysta1.jpg" alt="innova-crysta" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b> Innova Crysta-Diesel / Petrol Seater - 7💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹5,499/ 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">" Toyota Innova Crysta – offers unmatched comfort and versatility for families and business travelers alike. With ample legroom, luxurious interiors, and powerful performance, it’s the ultimate MPV choice.In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="innovacrysta.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="Scorpio Classic.html"> <img src="Hscorpio1.jpg" alt="Scorpio Classic" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Scorpio Classic-Diesel Seater-7💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹4,999 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Mahindra Scorpio Classic – offers a rugged design, a powerful engine, and all-terrain capabilities. A great option for both city drives and off-road Adventures In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="Scorpio Classic.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="Scorpio N.html"> <img src="Hscrn1.jpg" alt="Scorpio N" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>Scorpio N-Diesel Seater - 7💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹5,999 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Mahindra Scorpio N – is a bold and muscular SUV designed for adventure and power. With its commanding road presence and modern tech features, it’s perfect for long drives, family outings, and rugged terrain. In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="Scorpio N.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="thar2.html"> <img src="Hthar1.png" alt="THAR" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b> Thar -Petrol Seater -5💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹2,976  / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Mahindra Thar  – The Mahindra-reimagined icon, the all-new Thar, epitomizes the spirit of adventure and roughness.Its  sturdy construction,   4x4 technology offer unmatched performance on any kind of terrain. In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="thar2.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="xuv500.html"> <img src="Hxuv5001.jpg" alt="XUV 500" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>XUV500-Diesel/Petrol Seater -7💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹5,999 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"Mahindra XUV500 – The bold and powerful luxury SUV that offers a comfortable ride, advanced technology, and spacious seating. Perfect for family adventures or business trips, it combines luxury with utility. In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="xuv500.html">Details</a></button>
+            </div></a>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 hover:shadow-xl rounded-2xl p-4 transition-all duration-300"><a href="xuv700.html"> <img src="H7003.jpg" alt="XUV 700" class="rounded-lg mb-4 w-full h-40 object-cover">
+            <h2 class="text-lg font-semibold text-primary dark:text-accent mb-1"><b>XUV700-Diesel/Petrol Seater -7💺</b></h2>
+            <h3 class="text-lg font-semibold text-primary dark:text-accent mb-1">₹5,999 / 24 Hrs</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">"XUV700 – The  next-level driving experience with futuristic features and bold SUV styling. It’s built for those who love powerful machines packed with innovation and safety. In Hyderabad"</p>
+            <div class="flex justify-between">
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="booknow.html">Book Now</a></button>
+              <button class="bg-primary text-white px-3 py-1.5 rounded hover:bg-blue-700"><a href="xuv700.html">Details</a></button>
+            </div></a>
+       </div>
+  </section>
+
+
+
+   
+   <section class="max-w-7xl mx-auto px-4 py-12">
+    <h2 class="text-3xl font-semibold text-center text-gray-800 dark:text-white mb-8">Why Choose Us?</h2>
+    <div class="flex flex-wrap gap-6 justify-center">
+      <div class="flex-1 min-w-[200px] bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-6 rounded-xl shadow-md text-center">
+        <i class="fas fa-car-side text-4xl text-orange-500 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Wide Range of Cars</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Choose from economy to luxury — tailored for every need.</p>
+      </div>
+      <div class="flex-1 min-w-[200px] bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-6 rounded-xl shadow-md text-center">
+        <i class="fas fa-clock text-4xl text-orange-500 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">24/7 Availability</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Book anytime, day or night — we’re always ready.</p>
+      </div>
+      <div class="flex-1 min-w-[200px] bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-6 rounded-xl shadow-md text-center">
+        <i class="fas fa-rupee-sign text-4xl text-orange-500 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">Affordable Pricing</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Best value with no hidden charges.</p>
+      </div>
+      <div class="flex-1 min-w-[200px] bg-white dark:bg-gray-800 text-gray-800 dark:text-white p-6 rounded-xl shadow-md text-center">
+        <i class="fas fa-wallet text-4xl text-orange-500 mb-4"></i>
+        <h3 class="text-xl font-semibold mb-2">No Deposit</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Rent with ease, no deposit needed.</p>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-gray-100 dark:bg-gray-900 text-sm text-gray-600 dark:text-gray-400">
+    
+    <p>&copy; 2025 I TAKE SELF Car Rental Services. All rights reserved.</p>
+    <p>📍Head Office- Hyderabad, Telangana, India</p>
+    <p>📧 itakeselfcar@gmail.com </p>
+    
+</footer>
+
+  <!-- WhatsApp Floating Icon -->
+  <a href="https://wa.me/916302121490" class="fixed bottom-5 right-5 z-50 hover:scale-105 transition">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" class="w-14 h-14 drop-shadow-md" />
+  </a>
+
+  <!-- JS: Menu & Dark Toggle -->
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('darkToggle').addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+    document.getElementById("rentalForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  
+
+  // EmailJS send
+  emailjs.send("service_iszcc3f", "YOUR_TEMPLATE_ID", {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    city: document.getElementById("city").value,
+    car: document.getElementById("car").value,
+    start_date: document.getElementById("startDate").value,
+    end_date: document.getElementById("endDate").value,
+  });
+
+  // WhatsApp send
+  const phoneNumber = "+916302121490"; // your WhatsApp number
+  const message = `Rental Inquiry:
+Name: ${document.getElementById("name").value}
+Phone: ${document.getElementById("phone").value}
+City: ${document.getElementById("city").value}
+Car: ${document.getElementById("car").value}
+From: ${document.getElementById("startDate").value}
+To: ${document.getElementById("endDate").value}`;
+
+  const url = `https://wa.me/${phoneNumber.replace("+919010660212", "+916302121490")}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+});
+
+  </script>
+  
+</body>
+</html>
