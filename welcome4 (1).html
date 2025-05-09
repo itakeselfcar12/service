@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DriveNow - Self Drive Car Rentals</title>
+  <title>I TAKE SELF Car - Rental Services</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
+ <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+ <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #f9f9f9; }
-    header { background: url('way.jpeg') center/cover no-repeat; color: rgba(255, 254, 254, 0.726); padding: 100px 20px; text-align: center;  margin-bottom: 20px;
+    header { background: url('way.jpeg') center/cover no-repeat; color: rgb(0, 0, 0); padding: 100px 20px; text-align: center;  margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
     header h1 { font-size: 48px; margin-bottom: 10px; }
@@ -180,6 +183,55 @@ body.dark a {
   background-color: #0097a7;
   transform: translateY(-2px);
 }
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #222;
+    padding: 10px 0;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a,
+  .nav-links select {
+    margin: 5px 0;
+  }
+}
 
 /* Animation */
 @keyframes scaleIn {
@@ -192,7 +244,23 @@ body.dark a {
     opacity: 1;
   }
 }
+   .logo{
+      border-radius: 50px;
+    }
 
+@media (prefers-color-scheme: dark) {
+  header p {
+    color: #000000;
+    text-shadow: 2px 2px 4px rgb(255, 255, 255);
+  }
+}
+
+ h1 {
+    color: #000000;
+    text-shadow: 2px 2px 4px rgb(255, 255, 255);
+  }
+
+    
   </style>
 </head>
 <body>
@@ -210,51 +278,35 @@ body.dark a {
     
       
 
-  <nav>
-    <div style="font-size: 24px; font-weight: bold;">I Take Self Car</div>
-    <div>
-      <a href="welcome4 (1).html">Home</a>
-      <a href="#cities">Cities</a>
-      <a href="luxury.html">Luxury Cars</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div>
-      <label for="city-filter" style="color: white;">Choose City: </label>
-      <select id="city-filter" onchange="redirectToCity()">
-        <!-- <option value="">Choose City</option>
-        <option value="all">All</option>
-        <option value="hyderabad.html">Hyderabad</option>
-        <option value="bangalore.html">Bangalore</option>
-        <option value="chennai.html">Chennai</option>
-        <option value="mumbai.html">Mumbai</option>
-        <option value="delhi.html">Delhi</option>
-        <option value="pune.html">Pune</option> -->
-      </select>
-      
-      
-    </div>
-    
-  </nav>
-          <div class="flex items-center gap-2">
-        <button id="darkToggle" class="text-xl p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800" title="Toggle Dark Mode">🌓</button>
-        <button id="menu-toggle" class="md:hidden text-xl text-gray-800 dark:text-white p-2">☰</button>
-      </div>
-    </div>
-    <div id="mobile-menu" class="md:hidden hidden px-4 pb-4 text-gray-800 dark:text-white">
-      <a href="welcome4 (1).html" class="block py-2">Home</a>
-      <a href="car-listing (1).html" class="block py-2">Cars</a>
-      <a href="#services" class="block py-2">offers</a>
-      <a href="contact.html" class="block py-2">Contact</a>
-    </div>
+<nav>
+  <div class="nav-left">
+    <img src="I TAKE SELF.png" alt="DriveNow Logo" class="logo" />
+    <span class="brand">I Take Self Car</span>
+  </div>
+
+  <div class="nav-toggle" id="navToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <div class="nav-links" id="navLinks">
+    <a href="welcome4 (1).html">Home</a>
+    <a href="#cities">Cities</a>
+    <a href="car-listing (1).html">Cars</a>
+    <a href="contact.html">Contact</a>
+    <label for="city-filter" style="color: rgb(255, 97, 35);">Choose City: </label>
+    <select id="city-filter" onchange="redirectToCity()"></select>
+  </div>
+</nav>
+
     <button id="themeToggle">
       <i class="fas fa-moon"></i>
     </button>
 <br>
   <header>
-    <!-- <img src="https://via.placeholder.com/800x250?text=DriveNow+Rentals" alt="DriveNow Banner" class="header-image" /> -->
-    <h1>Drive Your Way</h1>
-    <p>Affordable Self-Drive Car Rentals in Your City</p>
-    <a href="#contact">Book Now</a>
+    
+    <h1 style="text-shadow: 2px 2px 4px rgb(255, 255, 255);">Drive Your Way</h1>
+    <p style="text-shadow: 2px 2px 4px rgb(255, 255, 255);"><b>Affordable Self-Drive Car Rentals in Your City </b></p>
+    <a href="booknow.html">Book Now</a>
   </header>
 
   <section class="section" id="cities">
@@ -416,11 +468,12 @@ body.dark a {
 
   <script>
     const cities = [
+      { name: 'SELECT', url: '#' },
       { name: 'Hyderabad', url: 'hyderabad.html' },
-      { name: 'Bangalore', url: 'bangalore.html' },
+      { name: 'Bangalore', url: 'Bangalore.html' },
       { name: 'Chennai', url: 'chennai.html' },
       { name: 'Mumbai', url: 'mumbai.html' },
-      { name: 'Delhi', url: 'delhi.html' },
+      { name: 'Delhi', url: 'Delhi.html' },
       { name: 'Pune', url: 'pune.html' }
     ];
   
@@ -443,15 +496,6 @@ body.dark a {
   </script>
    
    <script>
-       document.getElementById('menu-toggle').addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-
-    document.getElementById('darkToggle').addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-    });
-    document.getElementById("rentalForm").addEventListener("submit", function (e) {
-  e.preventDefault();
     const themeToggle = document.getElementById("themeToggle");
     const icon = themeToggle.querySelector("i");
     const body = document.body;
@@ -484,6 +528,17 @@ body.dark a {
     themeToggle.addEventListener("click", toggleTheme);
     initializeTheme();
   </script>
+
+
+  <script>
+  const navToggle = document.getElementById("navToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  navToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+</script>
+
   
   <!-- ✅ Add before the closing </body> tag -->
   <script>
