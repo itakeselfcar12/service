@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Car Rental Booking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Include Flatpickr -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+
+<script>
+  flatpickr("#pickDate", {
+    enableTime: true,
+    dateFormat: "Y-m-d h:i K",  // 12-hr format
+    time_24hr: false
+  });
+
+  flatpickr("#dropDate", {
+    enableTime: true,
+    dateFormat: "Y-m-d h:i K",
+    time_24hr: false
+  });
+</script>
+
+  <style>
+    #background-image {
+      margin: 0;
+      padding: 0;
+      background-image: url('swift.webp');
+      background-size: cover;          /* Makes the image cover the entire area */
+      background-position: center;     /* Centers the image */
+      background-repeat: no-repeat;    /* Prevents tiling */
+      height: 100vh;                   /* Full height of the viewport */
+    }
+  </style>
+  
+</head>
+<body class="bg-gray-100 text-gray-800" id="background-image">
+  >
+  <div class="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-10">
+    <h2 class="text-3xl font-bold text-center mb-6">Book Your Ride</h2>
+    <form id="bookingForm" class="space-y-4">
+      <!-- Customer Info -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" placeholder="Full Name" name="name" required class="input-style">
+        <input type="tel" placeholder="Phone Number" name="phone" required class="input-style">
+        <input type="email" placeholder="Email Address" name="email" required class="input-style">
+        <input type="text" placeholder="Driving License Number" name="dl" required class="input-style">
+      </div>
+
+      <!-- Purpose -->
+      <div>
+        <label class="block font-medium mb-1">Purpose</label>
+        <select name="purpose" class="input-style" required>
+          <option value="">Select Purpose</option>
+          <option value="Personal">Personal</option>
+          <option value="Business">Business</option>
+        </select>
+      </div>
+
+      <!-- City Selection -->
+      <div>
+        <label class="block font-medium mb-1">City</label>
+        <select name="city" id="city" class="input-style" onchange="updateCars()" required>
+          <option value="">Select City</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Pune">Pune</option>
+          <option value="Chennai">Chennai</option>
+        </select>
+        
+      </div>
+
+      <!-- Car Selection -->
+      <div>
+        <label class="block font-medium mb-1">Available Cars</label>
+        <select name="car" id="car" class="input-style" onchange="updatePrice()" required></select>
+      </div>
+
+      <!-- Dates -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Pick-Up -->
+        <div class="bg-gray-50 p-4 rounded-xl shadow hover:shadow-md transition">
+          <label for="pickDate" class="flex items-center font-semibold text-gray-700 mb-2">
+            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
+            </svg>
+            Pick-Up Date & Time
+          </label>
+          <input type="datetime-local" name="pickDate" id="pickDate"
+                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white shadow-inner"
+                 required>
+        </div>
+      
+        <!-- Drop-Off -->
+        <div class="bg-gray-50 p-4 rounded-xl shadow hover:shadow-md transition">
+          <label for="dropDate" class="flex items-center font-semibold text-gray-700 mb-2">
+            <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
+            </svg>
+            Drop-Off Date & Time
+          </label>
+          <input type="datetime-local" name="dropDate" id="dropDate"
+                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:outline-none bg-white shadow-inner"
+                 required>
+        </div>
+      </div>
+      
+
+      <!-- Price -->
+      <div class="mt-4">
+        <p class="text-lg font-semibold">Total Amount: <span id="total">0</span></p>
+      </div>
+
+      <!-- Submit -->
+      <button type="button" onclick="submitBooking()" class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
+        Proceed to Booking
+      </button>
+    </form>
+  </div>
+<br>
+<br>
+<br>
+  <script>
+ const carsByCity = {
+     Hyderabad: [
+  { name: 'Swift', price: 2000 },
+  { name: 'Baleno', price: 2200 },
+  { name: 'Brezza', price: 2500 },
+  { name: 'Nexon', price: 2700 },
+  { name: 'XUV700', price: 4000 },
+  { name: 'Fortuner', price: 6000 },
+  { name: 'Ertiga', price: 2800 },
+  { name: 'Urban Cruiser', price: 2600 },
+  { name: 'Seltos', price: 3000 },
+  { name: 'Venue', price: 2700 },
+  { name: 'Alcazar', price: 3800 },
+  { name: 'Thar', price: 5000 },
+  { name: 'Innova Crysta', price: 4500 },
+  { name: 'Verna', price: 3500 },
+  { name: 'Creta', price: 4000 },
+  { name: 'Scorpio Classic', price: 4200 },
+  { name: 'i20 Sportz', price: 2500 },
+  { name: 'Innova Hybrid', price: 4700 },
+  { name: 'XUV500', price: 3700 },
+  { name: 'Scorpio N', price: 4400 }
+],
+ Delhi: [
+    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Brezza', price: 2500 },
+    { name: 'Nexon', price: 2600 }, { name: 'XUV700', price: 4200 }, { name: 'Fortuner', price: 6000 },
+    { name: 'Ertiga', price: 2800 }, { name: 'Urban Cruiser', price: 2700 }, { name: 'Seltos', price: 3200 },
+    { name: 'Thar', price: 5000 }, { name: 'Innova Crysta', price: 4500 }, { name: 'Verna', price: 3500 },
+    { name: 'Creta', price: 4000 }, { name: 'Scorpio Classic', price: 4100 }, { name: 'i20 Sportz', price: 2400 },
+    { name: 'Innova Hybrid', price: 4700 }
+  ],
+  Mumbai: [
+    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Brezza', price: 2500 },
+    { name: 'Nexon', price: 2600 }, { name: 'XUV700', price: 4200 }, { name: 'Fortuner', price: 6000 },
+    { name: 'Ertiga', price: 2800 }, { name: 'Alcazar', price: 3900 }, { name: 'Seltos', price: 3200 },
+    { name: 'Thar', price: 5000 }, { name: 'Innova Crysta', price: 4500 }, { name: 'Verna', price: 3500 },
+    { name: 'Creta', price: 4000 }, { name: 'Scorpio Classic', price: 4100 }, { name: 'Venue', price: 3700 },
+    { name: 'Innova Hybrid', price: 4700 }
+  ],
+  Pune: [
+    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Nexon', price: 2600 },
+    { name: 'Fortuner', price: 6000 }, { name: 'Ertiga', price: 2800 }, { name: 'XUV500', price: 4000 },
+    { name: 'Seltos', price: 3200 }, { name: 'Thar', price: 5000 }, { name: 'Innova Crysta', price: 4500 },
+    { name: 'Urban Cruiser', price: 2700 }, { name: 'Creta', price: 4000 }
+  ],
+  Chennai: [
+    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Nexon', price: 2600 },
+    { name: 'Fortuner', price: 6000 }, { name: 'Ertiga', price: 2800 }, { name: 'XUV700', price: 4200 },
+    { name: 'Seltos', price: 3200 }, { name: 'Thar', price: 5000 }, { name: 'Innova Crysta', price: 4500 },
+    { name: 'Urban Cruiser', price: 2700 }, { name: 'Creta', price: 4000 }, { name: 'Verna', price: 3500 },
+    { name: 'i20 Sportz', price: 2400 }, { name: 'Scorpio N', price: 4300 }, { name: 'Alcazar', price: 3900 },
+    { name: 'Innova Hybrid', price: 4700 }
+  ],
+  Bangalore: [
+    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Nexon', price: 2600 },
+    { name: 'Fortuner', price: 6000 }, { name: 'Ertiga', price: 2800 }, { name: 'XUV700', price: 4200 },
+    { name: 'Seltos', price: 3200 }, { name: 'Thar', price: 5000 }, { name: 'Scorpio Classic', price: 4100 },
+    { name: 'Innova Hybrid', price: 4700 }, { name: 'Urban Cruiser', price: 2700 }, { name: 'Creta', price: 4000 },
+    { name: 'Verna', price: 3500 }, { name: 'Innova Crysta', price: 4500 }, { name: 'Scorpio N', price: 4300 },
+    { name: 'i20 Sportz', price: 2400 }, { name: 'Alcazar', price: 3900 }
+  ],
+    };
+  
+
+    
+    function updateCars() {
+  const city = document.getElementById('city').value;
+  const carSelect = document.getElementById('car');
+  carSelect.innerHTML = '';
+
+  if (carsByCity[city]) {
+    carsByCity[city].forEach(car => {
+      const option = document.createElement('option');
+      option.value = `${car.name}|${car.price}`;
+      option.textContent = `${car.name} - ₹${car.price}/day`;
+      carSelect.appendChild(option);
+    });
+  }
+
+  updatePrice();
+}
+
+function getRentalDays() {
+  const pickInput = document.getElementById('pickDate').value;
+  const dropInput = document.getElementById('dropDate').value;
+
+  if (!pickInput || !dropInput) return 0;
+
+  const pick = new Date(pickInput);
+  const drop = new Date(dropInput);
+
+  if (drop <= pick) return -1;
+
+  const diffMs = drop - pick;
+  const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+  return days;
+  
+}
+
+function updatePrice() {
+  const car = document.getElementById('car').value;
+  const totalSpan = document.getElementById('total');
+
+  if (!car) {
+    totalSpan.textContent = '0';
+    return;
+  }
+
+  const [, pricePerDay] = car.split('|');
+  const days = getRentalDays();
+
+  if (days === -1) {
+    totalSpan.textContent = 'Invalid date range';
+    return;
+  }
+
+  if (days === 0) {
+    totalSpan.textContent = 'Select pick & drop dates';
+    return;
+  }
+
+  const total = days * parseInt(pricePerDay);
+  totalSpan.textContent = `₹${total}`;
+}
+function formatDate12Hr(dateStr) {
+  const date = new Date(dateStr);
+  const options = {
+    year: 'numeric', month: 'short', day: 'numeric',
+    hour: 'numeric', minute: 'numeric',
+    hour12: true
+  };
+  return date.toLocaleString('en-IN', options);
+}
+
+flatpickr("#pickDate", {
+    enableTime: true,
+    dateFormat: "Y-m-d h:i K",  // 12-hr format
+    time_24hr: false
+  });
+
+  flatpickr("#dropDate", {
+    enableTime: true,
+    dateFormat: "Y-m-d h:i K",
+    time_24hr: false
+  });
+
+function submitBooking() {
+  const form = document.getElementById('bookingForm');
+  const data = new FormData(form);
+  const [carName, carPrice] = data.get('car').split('|');
+  const days = getRentalDays();
+
+  if (days <= 0) {
+    alert('Please select a valid date range (at least 1 full day).');
+    return;
+  }
+
+  const total = days * parseInt(carPrice);
+
+  const body = `
+Name: ${data.get('name')}
+Phone: ${data.get('phone')}
+Email: ${data.get('email')}
+DL Number: ${data.get('dl')}
+Purpose: ${data.get('purpose')}
+City: ${data.get('city')}
+Car: ${carName}
+Price/Day: ₹${carPrice}
+Pick Date: ${data.get('pickDate')}
+Drop Date: ${data.get('dropDate')}
+Total Days: ${days}
+Total Amount: ₹${total}
+  `.trim();
+
+  const mailtoLink = `mailto:itakeselfcar@gmail.com?subject=Car Rental Booking&body=${encodeURIComponent(body)}`;
+  window.location.href = mailtoLink;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  ['pickDate', 'dropDate', 'car'].forEach(id => {
+    document.getElementById(id).addEventListener('change', updatePrice);
+  });
+});
+
+</script>
+
+
+</body>
+</html>

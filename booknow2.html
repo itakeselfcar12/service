@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Car Rental Booking</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <style>
+    .input-style {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+      outline: none;
+      transition: box-shadow 0.2s;
+    }
+    .input-style:focus {
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800" style="background-image: url('swift.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; min-height: 100vh;">
+
+  <div class="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-10">
+    <h2 class="text-3xl font-bold text-center mb-6">Book Your Ride</h2>
+
+    <form id="bookingForm" class="space-y-4">
+      <!-- Customer Info -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" placeholder="Full Name" name="name" required class="input-style" />
+        <input type="tel" placeholder="Phone Number" name="phone" required class="input-style" />
+        <input type="email" placeholder="Email Address" name="email" required class="input-style" />
+        <input type="text" placeholder="Driving License Number" name="dl" required class="input-style" />
+      </div>
+
+      <!-- Purpose -->
+      <div>
+        <label class="block font-medium mb-1">Purpose</label>
+        <select name="purpose" class="input-style" required>
+          <option value="">Select Purpose</option>
+          <option value="Personal">Personal</option>
+          <option value="Business">Business</option>
+        </select>
+      </div>
+
+      <!-- City -->
+      <div>
+        <label class="block font-medium mb-1">City</label>
+        <select name="city" id="city" class="input-style" onchange="updateCars()" required>
+          <option value="">Select City</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Pune">Pune</option>
+          <option value="Chennai">Chennai</option>
+        </select>
+      </div>
+
+      <!-- Car -->
+      <div>
+        <label class="block font-medium mb-1">Available Cars</label>
+        <select name="car" id="car" class="input-style" onchange="updatePrice()" required></select>
+      </div>
+
+      <!-- Pick & Drop Date -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gray-50 p-4 rounded-xl shadow hover:shadow-md">
+          <label class="block font-semibold text-gray-700 mb-2">Pick-Up Date & Time</label>
+          <input type="text" name="pickDate" id="pickDate" class="input-style" required />
+        </div>
+        <div class="bg-gray-50 p-4 rounded-xl shadow hover:shadow-md">
+          <label class="block font-semibold text-gray-700 mb-2">Drop-Off Date & Time</label>
+          <input type="text" name="dropDate" id="dropDate" class="input-style" required />
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="mt-4">
+        <p class="text-lg font-semibold">Total Amount: <span id="total">0</span></p>
+      </div>
+
+      <!-- Submit -->
+      <button type="button" onclick="submitBooking()" class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
+        Proceed to Booking
+      </button>
+    </form>
+  </div>
+<br>
+<br>
+<br>
+  <script>
+    const carsByCity = {
+      Hyderabad: [{ name: 'Swift', price: 2000 }, { name: 'Verna', price: 3500 }, { name: 'Creta', price: 4000 },{ name: 'Fortuner', price: 4500 }],
+      Delhi: [{ name: 'i20', price: 2500 }, { name: 'Venue', price: 3700 }, { name: 'Thar', price: 5000 }],
+      Mumbai: [{ name: 'Baleno', price: 2200 }, { name: 'Fortuner', price: 6000 }, { name: 'Kia Seltos', price: 3800 }],
+      Chennai: [{ name: 'i20', price: 2500 }, { name: 'Venue', price: 3700 }, { name: 'Thar', price: 5000 }],
+      Pune: [{ name: 'i20', price: 2500 }, { name: 'Venue', price: 3700 }, { name: 'Thar', price: 5000 }],
+      Bangalore: [{ name: 'i20', price: 2500 }, { name: 'Venue', price: 3700 }, { name: 'Thar', price: 5000 }],
+    };
+
+    function updateCars() {
+      const city = document.getElementById('city').value;
+      const carSelect = document.getElementById('car');
+      carSelect.innerHTML = '';
+      if (carsByCity[city]) {
+        carsByCity[city].forEach(car => {
+          const option = document.createElement('option');
+          option.value = `${car.name}|${car.price}`;
+          option.textContent = `${car.name} - ₹${car.price}/day`;
+          carSelect.appendChild(option);
+        });
+      }
+      updatePrice();
+    }
+
+    function getRentalDays() {
+      const pickInput = document.getElementById('pickDate')._flatpickr?.selectedDates[0];
+      const dropInput = document.getElementById('dropDate')._flatpickr?.selectedDates[0];
+      if (!pickInput || !dropInput) return 0;
+      if (dropInput <= pickInput) return -1;
+      const diffMs = dropInput - pickInput;
+      return Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+    }
+
+    function updatePrice() {
+      const car = document.getElementById('car').value;
+      const totalSpan = document.getElementById('total');
+      if (!car) return totalSpan.textContent = '0';
+      const [, pricePerDay] = car.split('|');
+      const days = getRentalDays();
+      if (days === -1) return totalSpan.textContent = 'Invalid date range';
+      if (days === 0) return totalSpan.textContent = 'Select pick & drop dates';
+      totalSpan.textContent = `₹${days * parseInt(pricePerDay)}`;
+    }
+
+    function formatDate12Hr(date) {
+      return new Intl.DateTimeFormat('en-IN', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+        hour12: true
+      }).format(date);
+    }
+
+    function submitBooking() {
+      const form = document.getElementById('bookingForm');
+      const data = new FormData(form);
+      const [carName, carPrice] = data.get('car').split('|');
+      const pickDate = document.getElementById('pickDate')._flatpickr?.selectedDates[0];
+      const dropDate = document.getElementById('dropDate')._flatpickr?.selectedDates[0];
+      const days = getRentalDays();
+      if (days <= 0) return alert('Please select a valid date range (at least 1 full day).');
+      const total = days * parseInt(carPrice);
+
+      const body = `
+Name: ${data.get('name')}
+Phone: ${data.get('phone')}
+Email: ${data.get('email')}
+DL Number: ${data.get('dl')}
+Purpose: ${data.get('purpose')}
+City: ${data.get('city')}
+Car: ${carName}
+Price/Day: ₹${carPrice}
+Pick Date: ${formatDate12Hr(pickDate)}
+Drop Date: ${formatDate12Hr(dropDate)}
+Total Days: ${days}
+Total Amount: ₹${total}
+      `.trim();
+
+      window.location.href = `mailto:yourmail@example.com?subject=Car Rental Booking&body=${encodeURIComponent(body)}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      flatpickr("#pickDate", {
+        enableTime: true,
+        dateFormat: "Y-m-d h:i K",
+        time_24hr: false,
+        onChange: updatePrice
+      });
+
+      flatpickr("#dropDate", {
+        enableTime: true,
+        dateFormat: "Y-m-d h:i K",
+        time_24hr: false,
+        onChange: updatePrice
+      });
+
+      ['car'].forEach(id => {
+        document.getElementById(id).addEventListener('change', updatePrice);
+      });
+    });
+  </script>
+
+  
+
+</body>
+</html>

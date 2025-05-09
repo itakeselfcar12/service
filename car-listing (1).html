@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Listings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #1e1f1f;
+      color: white;
+      padding: 1rem 2rem;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .car-listings-container {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+h2{
+    text-align: center;
+    font-size: 2rem;
+    text-shadow: #1e1f1f
+}
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .car-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .car-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .car-card-content {
+      padding: 1rem;
+    }
+
+    .car-card-content h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      background: #1e1f1f;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
+
+    .socials a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .socials a:hover {
+      text-decoration: underline;
+    }
+    .details-btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.details-btn:hover {
+  background-color: #0056b3;
+}
+
+    @media (max-width: 600px) {
+      header .container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav a {
+        margin: 10px 10px 0 0;
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- <header> -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+  <a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="I TAKE SELF.png" alt="Logo" width="40" height="40" class="me-2">
+    <span style="font-weight: bold;">I Take Self Car Rental</span>
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item"><a class="nav-link" href="welcome4 (1).html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="car-listing (1).html">Cars</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Offers</a></li>
+      <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+    </ul>
+    <div class="form-check form-switch text-white ms-3">
+      <input class="form-check-input" type="checkbox" id="darkModeToggle">
+      <label class="form-check-label" for="darkModeToggle">Dark Mode</label>
+    </div>
+  </div>
+</nav>
+  <!-- </header> -->
+
+  <main class="car-listings-container">
+    <h2>Available Cars</h2>
+    <div id="cars-list" class="cars-grid">
+      <!-- Dynamic Car Cards will be inserted here -->
+    </div>
+  </main>
+
+<footer>
+<p>&copy; 2025 I TAKE SELF Car Rental Services. All rights reserved.</p>
+<p>📍Head Office- Hyderabad, Telangana, India</p>
+<p>📧 itakeselfcar@gmail.com </p>
+</footer>
+
+  <script>
+const cars = [
+  { name: "Swift", image: "Hswift1.jpg", link: "swift.html" },
+  { name: "Baleno", image: "https://via.placeholder.com/300x180?text=Baleno", link: "baleno.html" },
+  { name: "Brezza", image: "https://via.placeholder.com/300x180?text=Brezza", link: "brezza.html" },
+  { name: "Nexon", image: "https://via.placeholder.com/300x180?text=Nexon", link: "nexon.html" },
+  { name: "XUV700", image: "https://via.placeholder.com/300x180?text=XUV700", link: "xuv700.html" },
+  { name: "Fortuner", image: "https://via.placeholder.com/300x180?text=Fortuner", link: "fortuner.html" },
+  { name: "Ertiga", image: "https://via.placeholder.com/300x180?text=Ertiga", link: "ertiga.html" },
+  { name: "Urban Cruiser", image: "https://via.placeholder.com/300x180?text=Urban+Cruiser", link: "urban-cruiser.html" },
+  { name: "Seltos", image: "https://via.placeholder.com/300x180?text=Seltos", link: "seltos.html" },
+  { name: "Thar", image: "https://via.placeholder.com/300x180?text=Thar", link: "thar.html" },
+  { name: "Innova Crysta", image: "https://via.placeholder.com/300x180?text=Innova+Crysta", link: "innova-crysta.html" },
+  { name: "Verna", image: "https://via.placeholder.com/300x180?text=Verna", link: "verna.html" },
+  { name: "Creta", image: "https://via.placeholder.com/300x180?text=Creta", link: "creta.html" },
+  { name: "Scorpio Classic", image: "https://via.placeholder.com/300x180?text=Scorpio+Classic", link: "scorpio-classic.html" },
+  { name: "i20 Sportz", image: "https://via.placeholder.com/300x180?text=i20+Sportz", link: "i20-sportz.html" },
+  { name: "Innova Hybrid", image: "https://via.placeholder.com/300x180?text=Innova+Hybrid", link: "innova-hybrid.html" },
+  { name: "Scorpio N", image: "https://via.placeholder.com/300x180?text=Scorpio+N", link: "scorpio-n.html" },
+  { name: "XUV500", image: "https://via.placeholder.com/300x180?text=XUV700", link: "xuv700.html" },
+ { name: " Alcazar", image: "https://via.placeholder.com/300x180?text=i20+Sportz+Alcazar", link: "i20-sportz-alcazar.html" }
+];
+
+  
+    const carsList = document.getElementById("cars-list");
+  
+    cars.forEach(car => {
+      const card = document.createElement("a");
+      card.className = "car-card";
+      card.href = car.link;
+      card.innerHTML = `
+  <img src="${car.image}" alt="${car.name}" />
+  <div class="car-card-content">
+    <h3>${car.name}</h3>
+    <a class="details-btn">Click here for more details →</a>
+  </div>
+`;
+
+      carsList.appendChild(card);
+    });
+  </script>
+  
+<script>
+const toggle = document.getElementById("darkModeToggle");
+toggle.addEventListener("change", () => {
+  document.body.classList.toggle("bg-dark");
+  document.body.classList.toggle("text-white");
+  document.querySelectorAll("#headerCarousel, .body").forEach(el => {
+    el.classList.toggle("bg-black");
+    el.classList.toggle("text-white");
+    el.classList.toggle("border");
+  });
+  document.querySelectorAll(".car-info, .feature, .review").forEach(el => {
+    el.classList.toggle("bg-dark");
+    el.classList.toggle("text-white");
+    el.classList.toggle("border");
+  });
+  document.querySelectorAll(".contact, .reviews").forEach(el => {
+    el.classList.toggle("bg-dark");
+    el.classList.toggle("text-white");
+  });
+  document.querySelector("footer").classList.toggle("bg-dark");
+  document.querySelector("footer").classList.toggle("text-white");
+});
+</script>
+  
+</body>
+</html>
