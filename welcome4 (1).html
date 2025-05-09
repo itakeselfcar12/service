@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveNow - Self Drive Car Rentals</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f9f9f9; }
+    header { background: url('way.jpeg') center/cover no-repeat; color: rgba(255, 254, 254, 0.726); padding: 100px 20px; text-align: center;  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
+    header h1 { font-size: 48px; margin-bottom: 10px; }
+    header p { font-size: 20px; margin-bottom: 30px; }
+    header a { padding: 12px 25px; background: #ff5a00; color: white; text-decoration: none; border-radius: 5px; }
+
+    nav { background: #111; color: white; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; position: sticky; top: 0; z-index: 999; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    nav select { padding: 5px; border-radius: 4px; border: none; }
+
+    section { padding: 40px 20px; }
+    .section-title { text-align: center; margin-bottom: 30px; font-size: 32px; }
+
+    .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; width: 300px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { margin-bottom: 10px; }
+    .card p a { color: #ff5a00; text-decoration: none; margin-right: 8px; }
+
+    .contact { text-align: center; background: #f0f0f0; padding: 30px; }
+    .contact a { display: inline-block; margin: 10px; padding: 10px 20px; color: white; background: green; border-radius: 5px; text-decoration: none; }
+
+    footer { background: #222; color: white; text-align: center; padding: 20px; }
+    .social a { color: white; margin: 0 10px; }
+
+    .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+.header-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+#themeToggle {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  padding-top: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  background-color: #f1f1f1;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#themeToggle:hover {
+  transform: rotate(15deg);
+}
+
+body.dark #themeToggle {
+  background-color: #444;
+  color: #fff;
+}
+
+#themeToggle i {
+  transition: transform 0.4s ease;
+}
+
+#themeToggle.animate i {
+  transform: rotate(180deg);
+}
+body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark nav {
+  background-color: #222;
+}
+
+body.dark .card {
+  background-color: #1e1e1e;
+  color: #fff;
+  border-color: #444;
+}
+
+body.dark header {
+  color: #fff;
+}
+
+body.dark .contact {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+body.dark footer {
+  background-color: #111;
+  color: #ccc;
+}
+
+body.dark a {
+  color: #ffa64d;
+}
+/* Overlay background */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Show popup */
+.popup-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Popup box */
+.popup-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: #fff;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.4s ease forwards;
+}
+
+/* Close button */
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Explore button */
+.popup-content .button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #00bcd4;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.popup-content .button:hover {
+  background-color: #0097a7;
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <body>
+    <!-- ✅ Add this right after the <body> tag -->
+  
+      <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <span class="close-button" id="closeButton">&times;</span>
+            <h2 id="popupHeading">Welcome!</h2>
+            <p id="popupMessage">We're glad to have you here.</p>
+            <a href="welcome4 (1).html" class="button">Explore</a>
+        </div>
+    </div>
+    
+      
+
+  <nav>
+    <div style="font-size: 24px; font-weight: bold;">I Take Self Car</div>
+    <div>
+      <a href="welcome4 (1).html">Home</a>
+      <a href="#cities">Cities</a>
+      <a href="luxury.html">Luxury Cars</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <label for="city-filter" style="color: white;">Choose City: </label>
+      <select id="city-filter" onchange="redirectToCity()">
+        <!-- <option value="">Choose City</option>
+        <option value="all">All</option>
+        <option value="hyderabad.html">Hyderabad</option>
+        <option value="bangalore.html">Bangalore</option>
+        <option value="chennai.html">Chennai</option>
+        <option value="mumbai.html">Mumbai</option>
+        <option value="delhi.html">Delhi</option>
+        <option value="pune.html">Pune</option> -->
+      </select>
+      
+    </div>
+  </nav>
+    <button id="themeToggle">
+      <i class="fas fa-moon"></i>
+    </button>
+<br>
+  <header>
+    <!-- <img src="https://via.placeholder.com/800x250?text=DriveNow+Rentals" alt="DriveNow Banner" class="header-image" /> -->
+    <h1>Drive Your Way</h1>
+    <p>Affordable Self-Drive Car Rentals in Your City</p>
+    <a href="#contact">Book Now</a>
+  </header>
+
+  <section class="section" id="cities">
+    <h2 class="section-title">Cars by City</h2>
+    <div class="cards">
+      <!-- Each card includes city and cars as clickable links -->
+      <div class="card" data-city="Hyderabad">
+        <img src="charminar.jpeg" alt="Hyderabad Cars" />
+        <h3>Hyderabad</h3>
+        <p>
+          <a href="swift.html">Swift</a>,
+          <a href="Baleno .html">Baleno</a>,
+          <a href="Maruti Brezza.html">Brezza</a>,
+          <a href="nexon.html">Nexon</a>,
+          <a href="xuv700.html">XUV700</a>,
+          <a href="Fortuner 4x4.html">Fortuner</a>,
+          <a href="ertiga.html">Ertiga</a>,
+          <a href="urbancruiser.html">Urban Cruiser</a>,
+          <a href="seltos.html">Seltos</a>,
+          <a href="thar2.html">Thar</a>,
+          <a href="innovacrysta.html">Innova Crysta</a>,
+          <a href="verna.html">Verna</a>,
+          <a href="creta.html">Creta</a>,
+          <a href="Scorpio Classic.html">Scorpio Classic</a>,
+          <a href="i20 sportz.html">i20 Sportz</a>,
+          <a href="innova hybrid.html">Innova Hybrid</a>,
+          <a href="Scorpio N.html">Scorpio N</a>,
+          <a href="xuv500.html">XUV500</a>,
+          <a href="alcazar.html">Alcazar</a>,
+          <a href="venue.html">Venue</a>
+        </p>
+      </div>
+      
+      <div class="card" data-city="Bangalore">
+          <img src="Bangalore.jpeg" alt="Bangalore Cars" />
+          <h3>Bangalore</h3>
+          <p>
+            <a href="swift.html">Swift</a>,
+            <a href="Baleno .html">Baleno</a>,
+            <a href="nexon.html">Nexon</a>,
+            <a href="Fortuner 4x4.html">Fortuner</a>,
+            <a href="ertiga.html">Ertiga</a>,
+            <a href="xuv700.html">XUV700</a>,
+            <a href="seltos.html">Seltos</a>,
+            <a href="thar2.html">Thar</a>,
+            <a href="Scorpio Classic.html">Scorpio Classic</a>,
+            <a href="innova hybrid.html">Innova Hybrid</a>,
+            <a href="urbancruiser.html">Urban Cruiser</a>,
+            <a href="creta.html">Creta</a>,
+            <a href="verna.html">Verna</a>,
+            <a href="innovacrysta.html">Innova Crysta</a>,
+            <a href="Scorpio N.html">Scorpio N</a>,
+            <a href="i20 sportz.html">i20 Sportz</a>,
+            <a href="alcazar.html">Alcazar</a>
+          </p>
+        </div>
+        
+      <div class="card" data-city="Chennai">
+        <img src="chennai.jpeg" alt="Chennai Cars" />
+        <h3>Chennai</h3>
+        <p>
+          <a href="swift.html">Swift</a>,
+          <a href="Baleno .html">Baleno</a>,
+          <a href="nexon.html">Nexon</a>,
+          <a href="Fortuner 4x4.html">Fortuner</a>,
+          <a href="ertiga.html">Ertiga</a>,
+          <a href="xuv700.html">XUV700</a>,
+          <a href="seltos.html">Seltos</a>,
+          <a href="thar2.html">Thar</a>,
+          <a href="innovacrysta.html">Innova Crysta</a>,
+          <a href="urbancruiser.html">Urban Cruiser</a>,
+          <a href="creta.html">Creta</a>,
+          <a href="verna.html">Verna</a>,
+          <a href="i20 sportz.html">i20 Sportz</a>,
+          <a href="Scorpio N.html">Scorpio N</a>,
+          <a href="alcazar.html">Alcazar</a>,
+          <a href="innova hybrid.html">Innova Hybrid</a>
+        </p>
+      </div>
+      
+      <div class="card" data-city="Mumbai">
+        <img src="mumbai.jpeg" alt="Mumbai Cars" />
+        <h3>Mumbai</h3>
+        <p>
+          <a href="swift.html">Swift</a>,
+          <a href="Baleno .html">Baleno</a>,
+          <a href="Maruti Brezza.html">Brezza</a>,
+          <a href="nexon.html">Nexon</a>,
+          <a href="xuv700.html">XUV700</a>,
+          <a href="Fortuner 4x4.html">Fortuner</a>,
+          <a href="ertiga.html">Ertiga</a>,
+          <a href="alcazar.html">Alcazar</a>,
+          <a href="seltos.html">Seltos</a>,
+          <a href="thar2.html">Thar</a>,
+          <a href="innovacrysta.html">Innova Crysta</a>,
+          <a href="verna.html">Verna</a>,
+          <a href="creta.html">Creta</a>,
+          <a href="Scorpio Classic.html">Scorpio Classic</a>,
+          <a href="venue.html">Venue</a>,
+          <a href="innova hybrid.html">Innova Hybrid</a>
+        </p>
+      </div>
+      
+      <div class="card" data-city="Delhi">
+        <img src="delhi.jpeg" alt="Delhi Cars" />
+        <h3>Delhi</h3>
+        <p>
+          <a href="swift.html">Swift</a>, 
+          <a href="Baleno .html">Baleno</a>, 
+          <a href="Maruti Brezza.html">Brezza</a>, 
+          <a href="nexon.html">Nexon</a>, 
+          <a href="xuv700.html">XUV700</a>, 
+          <a href="Fortuner 4x4.html">Fortuner</a>, 
+          <a href="ertiga.html">Ertiga</a>, 
+          <a href="urbancruiser.html">Urban Cruiser</a>, 
+          <a href="seltos.html">Seltos</a>, 
+          <a href="thar2.html">Thar</a>, 
+          <a href="innovacrysta.html">Innova Crysta</a>, 
+          <a href="verna.html">Verna</a>, 
+          <a href="creta.html">Creta</a>, 
+          <a href="Scorpio Classic.html">Scorpio Classic</a>, 
+          <a href="i20 sportz.html">i20 Sportz</a>, 
+          <a href="innova hybrid.html">Innova Hybrid</a>
+        </p>
+      </div>
+      
+      <div class="card" data-city="Pune">
+        <img src="pune.jpeg" alt="Pune Cars" />
+        <h3>Pune</h3>
+        <p>
+          <a href="seltos.html">Swift</a>,
+          <a href="Baleno .html">Baleno</a>,
+          <a href="nexon.html">Nexon</a>,
+          <a href="Fortuner 4x4.html">Fortuner</a>,
+          <a href="ertiga.html">Ertiga</a>,
+          <a href="xuv500.html">XUV500</a>,
+          <a href="seltos.html">Seltos</a>,
+          <a href="thar2.html">Thar</a>,
+          <a href="innovacrysta.html">Innova Crysta</a>,
+          <a href="urbancruiser.html">Urban Cruiser</a>,
+          <a href="creta.html">Creta</a>
+        </p>
+      </div>
+      
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact & Booking</h2>
+    <p>Available 24/7 | WhatsApp or Call</p>
+    <a href="https://wa.me/916302121490" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    <a href="tel:+91630212490"><i class="fas fa-phone"></i> Call Now</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 I TAKE SELF Car Rental Services. All rights reserved.</p>
+    <p>📍Head Office- Hyderabad, Telangana, India</p>
+    <p>📧 itakeselfcar@gmail.com </p>
+    </footer>
+
+  <script>
+    const cities = [
+      { name: 'Hyderabad', url: 'hyderabad.html' },
+      { name: 'Bangalore', url: 'bangalore.html' },
+      { name: 'Chennai', url: 'chennai.html' },
+      { name: 'Mumbai', url: 'mumbai.html' },
+      { name: 'Delhi', url: 'delhi.html' },
+      { name: 'Pune', url: 'pune.html' }
+    ];
+  
+    // Dynamically populate the dropdown with city options
+    const citySelect = document.getElementById("city-filter");
+    cities.forEach(city => {
+      const option = document.createElement("option");
+      option.value = city.url;
+      option.textContent = city.name;
+      citySelect.appendChild(option);
+    });
+  
+    // Redirect function to navigate to the selected city's page
+    function redirectToCity() {
+      const cityPage = document.getElementById("city-filter").value;
+      if (cityPage) {
+        window.location.href = cityPage; // Redirect to the selected city's page
+      }
+    }
+  </script>
+   
+   <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const icon = themeToggle.querySelector("i");
+    const body = document.body;
+  
+    function updateIcon(theme) {
+      icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+    }
+  
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      body.classList.remove("light", "dark");
+      body.classList.add(savedTheme);
+      updateIcon(savedTheme);
+    }
+  
+    function toggleTheme() {
+      const currentTheme = body.classList.contains("dark") ? "dark" : "light";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      body.classList.remove(currentTheme);
+      body.classList.add(newTheme);
+      localStorage.setItem("theme", newTheme);
+      updateIcon(newTheme);
+  
+      themeToggle.classList.add("animate");
+      setTimeout(() => {
+        themeToggle.classList.remove("animate");
+      }, 400);
+    }
+  
+    themeToggle.addEventListener("click", toggleTheme);
+    initializeTheme();
+  </script>
+  
+  <!-- ✅ Add before the closing </body> tag -->
+  <script>
+    
+    // Login form validation
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  e.preventDefault(); // prevent default form action first
+
+  const usernameOrEmail = document.getElementById("usernameOrEmail").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const errorDiv = document.getElementById("loginError");
+
+  errorDiv.textContent = "";
+
+  if (!usernameOrEmail || !password) {
+    errorDiv.textContent = "Please fill in both username/email and password.";
+    return;
+  }
+
+  // Retrieve users from localStorage
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  const user = users.find(u =>
+    (u.username === usernameOrEmail || u.email === usernameOrEmail) &&
+    u.password === password
+  );
+
+  if (!user) {
+    errorDiv.textContent = "Invalid username/email or password.";
+    return;
+  }
+
+  // Save logged-in user session
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+  // Redirect to welcome page
+  window.location.href = "welcome4 (1).html";
+});
+lementById("popupOverlay").classList.remove("active");
+    
+  </script>
+  
+  
+  
+
+
+</body>
+</html>

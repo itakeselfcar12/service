@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DriveNow - Self Drive Car Rentals</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; color: #333; }
+
+    /* Header Nav */
+    nav {
+      background: #000;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
+    nav a {
+      color: white;
+      margin: 0 12px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    header {
+      background: url('https://via.placeholder.com/1600x500') center/cover no-repeat;
+      color: white;
+      padding: 120px 20px;
+      text-align: center;
+    }
+    header h1 { font-size: 52px; margin-bottom: 15px; }
+    header p { font-size: 22px; margin-bottom: 30px; }
+    header a {
+      padding: 12px 25px;
+      background: #ff5a00;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .section { padding: 50px 20px; max-width: 1200px; margin: auto; }
+    .section-title {
+      font-size: 36px;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #222;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 300px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 200px; object-fit: cover; }
+    .card-content { padding: 20px; }
+    .card-content h3 { margin-bottom: 10px; }
+    .card-content p { color: #666; }
+
+    .contact {
+      background: #fff;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .contact a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      background: green;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .social a { color: white; margin: 0 8px; font-size: 18px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav { flex-direction: column; align-items: flex-start; }
+      .cards { flex-direction: column; align-items: center; }
+      header h1 { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">DriveNow</div>
+    <div>
+      <a href="#cars">Cars</a>
+      <a href="#cities">Cities</a>
+      <a href="#offers">Offers</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Drive Your Way</h1>
+    <p>Affordable Self-Drive Car Rentals in Your City</p>
+    <a href="#contact">Book Now</a>
+  </header>
+
+  <section class="section" id="cars">
+    <h2 class="section-title">Popular Cars</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="swift.webp" alt="Maruti Swift">
+        <div class="card-content">
+          <h3>Maruti Swift</h3>
+          <p>₹1,499/day - Manual</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="kia.webp" alt="Kia Seltos">
+        <div class="card-content">
+          <h3>Kia Seltos</h3>
+          <p>₹1,899/day - Manual</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="mahindra thar.webp" alt="Mahindra Thar">
+        <div class="card-content">
+          <h3>Mahindra Thar</h3>
+          <p>₹2,999/day - Manual</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cities">
+    <h2 class="section-title">Cars by City</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-content">
+          <h3>Hyderabad</h3>
+          <p>Swift, Seltos, Thar, Baleno</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <h3>Bangalore</h3>
+          <p>Baleno, Creta, Scorpio</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <h3>Chennai</h3>
+          <p>i20, Swift, XUV300</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="offers">
+    <h2 class="section-title">Current Offers</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-content">
+          <h3>₹50 Cashback</h3>
+          <p>On 1-day booking</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <h3>₹300 Cashback</h3>
+          <p>On 7-day booking</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <h3>₹1500 Cashback</h3>
+          <p>For 45+ day booking</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact & Booking</h2>
+    <p>Available 24/7 | WhatsApp or Call</p>
+    <a href="https://wa.me/918121131870" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    <a href="tel:+918121131870"><i class="fas fa-phone"></i> Call Now</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DriveNow Rentals. All rights reserved.</p>
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>Hyderabad, Telangana, India</p>
+  </footer>
+
+</body>
+</html>

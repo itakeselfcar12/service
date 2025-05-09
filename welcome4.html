@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveNow - Self Drive Car Rentals</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f9f9f9; }
+    header { background: url('https://via.placeholder.com/1600x500') center/cover no-repeat; color: white; padding: 100px 20px; text-align: center; }
+    header h1 { font-size: 48px; margin-bottom: 10px; }
+    header p { font-size: 20px; margin-bottom: 30px; }
+    header a { padding: 12px 25px; background: #ff5a00; color: white; text-decoration: none; border-radius: 5px; }
+
+    nav { background: #111; color: white; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; position: sticky; top: 0; z-index: 999; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    nav select { padding: 5px; border-radius: 4px; border: none; }
+
+    section { padding: 40px 20px; }
+    .section-title { text-align: center; margin-bottom: 30px; font-size: 32px; }
+
+    .cards { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; width: 300px; padding: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .card h3 { margin-bottom: 10px; }
+    .card p a { color: #ff5a00; text-decoration: none; margin-right: 8px; }
+
+    .contact { text-align: center; background: #f0f0f0; padding: 30px; }
+    .contact a { display: inline-block; margin: 10px; padding: 10px 20px; color: white; background: green; border-radius: 5px; text-decoration: none; }
+
+    footer { background: #222; color: white; text-align: center; padding: 20px; }
+    .social a { color: white; margin: 0 10px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div style="font-size: 24px; font-weight: bold;">DriveNow</div>
+    <div>
+      <a href="Home">Home</a>
+      <a href="#cars">Cars</a>
+      <a href="#cities">Cities</a>
+      <a href="#offers">Offers</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div>
+      <label for="city-filter" style="color: rgb(227, 117, 58);">Choose City: </label>
+      <select id="city-filter" onchange="filterCars()">
+        <option value="all">All</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Delhi">Delhi</option>
+        <option value="Pune">Pune</option>
+      </select>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Drive Your Way</h1>
+    <p>Affordable Self-Drive Car Rentals in Your City</p>
+    
+    <a href="#contact">Book Now</a>
+  </header>
+
+  <section class="section" id="cities">
+    <h2 class="section-title">Cars by City</h2>
+    <div class="cards">
+      <!-- Each card includes city and cars as clickable links -->
+      <div class="card" data-city="Hyderabad">
+        <h3><a href="thar.html">Hyderabad</a></h3>
+        <p><a href="#">Swift</a>, <a href="#">Baleno</a>, <a href="#">Creta</a>, <a href="#">Thar</a>, <a href="#">i20</a>, <a href="#">Ertiga</a>, <a href="#">Innova</a></p>
+      </div>
+      <div class="card" data-city="Bangalore">
+        <h3>Bangalore</h3>
+        <p><a href="#">Swift</a>, <a href="#">Brezza</a>, <a href="#">Seltos</a>, <a href="#">i10 Nios</a>, <a href="#">XUV300</a>, <a href="#">Baleno</a>, <a href="#">Scorpio</a></p>
+      </div>
+      <div class="card" data-city="Chennai">
+        <h3>Chennai</h3>
+        <p><a href="#">Swift</a>, <a href="#">Altroz</a>, <a href="#">XUV700</a>, <a href="#">S-Cross</a>, <a href="#">Venue</a>, <a href="#">Amaze</a>, <a href="#">i20</a></p>
+      </div>
+      <div class="card" data-city="Mumbai">
+        <h3>Mumbai</h3>
+        <p><a href="#">Innova Crysta</a>, <a href="#">Baleno</a>, <a href="#">i20</a>, <a href="#">Swift</a>, <a href="#">Brezza</a>, <a href="#">Ertiga</a>, <a href="#">Nexon</a></p>
+      </div>
+      <div class="card" data-city="Delhi">
+        <h3>Delhi</h3>
+        <p><a href="#">Thar</a>, <a href="#">Wagon R</a>, <a href="#">Alto K10</a>, <a href="#">i20 Sportz</a>, <a href="#">Creta</a>, <a href="#">Magnite</a>, <a href="#">Scorpio</a></p>
+      </div>
+      <div class="card" data-city="Pune">
+        <h3>Pune</h3>
+        <p><a href="#">Venue</a>, <a href="#">Dzire</a>, <a href="#">Baleno</a>, <a href="#">Urban Cruiser</a>, <a href="#">Altroz</a>, <a href="#">Nexon</a>, <a href="#">Ertiga</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact & Booking</h2>
+    <p>Available 24/7 | WhatsApp or Call</p>
+    <a href="https://wa.me/918121131870" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    <a href="tel:+918121131870"><i class="fas fa-phone"></i> Call Now</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DriveNow Rentals. All rights reserved.</p>
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>Head Office Hyderabad, Telangana, India</p>
+  </footer>
+
+  <script>
+    function filterCars() {
+      const selectedCity = document.getElementById("city-filter").value;
+      const cards = document.querySelectorAll(".card[data-city]");
+      cards.forEach(card => {
+        card.style.display = (selectedCity === 'all' || card.dataset.city === selectedCity) ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

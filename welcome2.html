@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DriveNow - Self Drive Car Rentals</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    header { background: url('https://via.placeholder.com/1600x500') center/cover no-repeat; color: white; padding: 100px 20px; text-align: center; }
+    header h1 { font-size: 48px; margin-bottom: 10px; }
+    header p { font-size: 20px; margin-bottom: 30px; }
+    header a { padding: 12px 25px; background: #ff5a00; color: white; text-decoration: none; border-radius: 5px; }
+
+    section { padding: 40px 20px; }
+    .section-title { text-align: center; margin-bottom: 30px; font-size: 32px; }
+
+    .cars, .offers { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+    }
+    .card img { width: 100%; border-radius: 10px; }
+    .card h3 { margin: 10px 0; }
+    .card p { color: #555; }
+
+    .contact { text-align: center; background: #f8f8f8; padding: 30px; }
+    .contact a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      color: white;
+      background: green;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    footer {
+      background: #222; color: white;
+      text-align: center; padding: 20px;
+    }
+    footer p { margin: 5px 0; }
+    .social a { color: white; margin: 0 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav style="background: #111; color: white; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; position: sticky; top: 0; z-index: 999;">
+        <div style="font-size: 24px; font-weight: bold;">DriveNow</div>
+        <div>
+          <a href="#cars" style="color: white; margin: 0 10px; text-decoration: none;">Cars</a>
+          <a href="#offers" style="color: white; margin: 0 10px; text-decoration: none;">Offers</a>
+          <a href="#contact" style="color: white; margin: 0 10px; text-decoration: none;">Contact</a>
+        </div>
+      </nav>
+    <h1>Drive Your Way</h1>
+    <p>Affordable Self-Drive Car Rentals in Your City</p>
+    <a href="#contact">Book Now</a>
+    
+  </header>
+
+  <section id="cars">
+    <h2 class="section-title">Popular Cars</h2>
+    <div class="cars">
+      <div class="card">
+        <img src="swift.webp" alt="Swift">
+        <h3>Maruti Swift</h3>
+        <p>₹1,499/day - Manual</p>
+      </div>
+      <div class="card">
+        <img src="kia.webp" alt="kia seltos">
+        <h3>kia seltos</h3>
+        <p>₹1,899/day - Manual</p>
+      </div>
+      <div class="card">
+        <img src="mahindra thar.webp" alt="mahindra thar">
+        <h3>mahindra thar</h3>
+        <p>₹2,999/day - Manual</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="offers">
+    <h2 class="section-title">Current Offers</h2>
+    <div class="offers">
+      <div class="card">
+        <h3>Get ₹50 Cashback</h3>
+        <p>On 1-day booking</p>
+      </div>
+      <div class="card">
+        <h3>₹300 Cashback</h3>
+        <p>On 7-day booking</p>
+      </div>
+      <div class="card">
+        <h3>₹1500 Cashback</h3>
+        <p>For 45+ day booking</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact & Booking</h2>
+    <p>Available 24/7 | WhatsApp or Call</p>
+    <a href="https://wa.me/918121131870" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    <a href="tel:+918121131870"><i class="fas fa-phone"></i> Call Now</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 DriveNow Rentals. All rights reserved.</p>
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>Hyderabad, Telangana, India</p>
+  </footer>
+
+</body>
+</html>
