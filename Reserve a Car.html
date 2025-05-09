@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reserve a Car | Elite Auto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Carousel -->
+  <section class="relative w-full h-64 md:h-96 overflow-hidden">
+    <div id="carouselSlides" class="flex h-full transition-transform duration-500">
+      <img src="https://cdn.pixabay.com/photo/2020/02/13/16/17/mercedes-4845370_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Mercedes G‑Class">
+      <img src="https://cdn.pixabay.com/photo/2020/08/30/13/15/bmw-5531033_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="BMW 7 Series">
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/12/52/ferrari-1838784_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Ferrari 488">
+      <img src="https://cdn.pixabay.com/photo/2021/04/12/17/25/range-rover-6170926_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Range Rover Vogue">
+      <img src="https://cdn.pixabay.com/photo/2018/05/16/10/04/audi-3404422_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Audi A6">
+    </div>
+    <button id="prevBtn"
+            class="absolute top-1/2 left-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">
+      ‹
+    </button>
+    <button id="nextBtn"
+            class="absolute top-1/2 right-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">
+      ›
+    </button>
+  </section>
+
+  <!-- Reservation Form -->
+  <section class="py-10 px-4 max-w-3xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-8">Reservation Form</h2>
+    <form id="reserveForm" class="bg-white p-6 rounded-lg shadow space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <input type="text" placeholder="Full Name" class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        <input type="email" placeholder="Email Address" class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        <input type="tel" placeholder="Phone Number" class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+        <!-- City Selector -->
+        <select id="citySelect" onchange="filterCars()"
+                class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <option value="">Select City</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Kolkata">Kolkata</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Pune">Pune</option>
+          <option value="Surat">Surat</option>
+          <option value="Jaipur">Jaipur</option>
+          <option value="Varanasi">Varanasi</option>
+          <option value="Agra">Agra</option>
+          <option value="Indore">Indore</option>
+          <option value="Lucknow">Lucknow</option>
+          <option value="Amritsar">Amritsar</option>
+          <option value="Bhubaneswar">Bhubaneswar</option>
+          <option value="Ahmedabad">Ahmedabad</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <select id="carSelect" onchange="updateCarDetails()"
+                class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <option value="">Select a Car</option>
+        </select>
+        <input type="date" id="dateInput"
+               class="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+      </div>
+
+      <!-- Car Preview & Price -->
+      <div id="carDetails" class="mt-4 hidden transition duration-300">
+        <h3 class="text-lg font-semibold mb-2">Selected Car:</h3>
+        <img id="carImage" src="" alt="Car Preview" class="w-full h-56 object-cover rounded mb-2" />
+        <p class="text-gray-700">Price per Day: ₹<span id="carPrice">0</span></p>
+        <label class="block mt-4 text-sm text-gray-700">Number of Days:</label>
+        <input type="number" id="daysInput" min="1" value="1" onchange="calculateTotal()"
+               class="border p-2 rounded w-24 mt-1" />
+        <p class="mt-2 font-semibold text-lg">Total Price: ₹<span id="totalPrice">0</span></p>
+      </div>
+
+      <button type="submit"
+              class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition w-full font-semibold">
+        Reserve Now
+      </button>
+    </form>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+         class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hidden">
+      Reservation submitted successfully!
+    </div>
+  </section>
+
+  <script>
+    // —— Carousel Logic —— 
+    const slides = document.getElementById('carouselSlides');
+    const total = slides.children.length;
+    let index = 0;
+    function showSlide(i) {
+      slides.style.transform = `translateX(-${i * 100}%)`;
+    }
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      index = (index - 1 + total) % total;
+      showSlide(index);
+    });
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      index = (index + 1) % total;
+      showSlide(index);
+    });
+    setInterval(() => {
+      index = (index + 1) % total;
+      showSlide(index);
+    }, 5000);
+
+    // —— Reservation Logic —— 
+    const carsByCity = {
+      Hyderabad: [
+        { name: "Mercedes G‑Class", price: 12000, img: "https://cdn.pixabay.com/photo/2020/02/13/16/17/mercedes-4845370_1280.jpg" },
+        { name: "BMW 7 Series",   price: 9500,  img: "https://cdn.pixabay.com/photo/2020/08/30/13/15/bmw-5531033_1280.jpg" }
+      ],
+      Bangalore: [
+        { name: "Ferrari 488", price: 18000, img: "https://cdn.pixabay.com/photo/2016/11/18/12/52/ferrari-1838784_1280.jpg" },
+        { name: "Audi A6",    price: 9000,  img: "https://cdn.pixabay.com/photo/2018/05/16/10/04/audi-3404422_1280.jpg" }
+      ],
+      Mumbai: [
+        { name: "Range Rover Evoque", price: 11000, img: "https://cdn.pixabay.com/photo/2021/01/11/07/53/range-rover-5907036_1280.jpg" }
+      ],
+      // stubs
+      Delhi: [], Kolkata: [], Chennai: [], Pune: [], Surat: [],
+      Jaipur: [], Varanasi: [], Agra: [], Indore: [], Lucknow: [],
+      Amritsar: [], Bhubaneswar: [], Ahmedabad: []
+    };
+    let selectedCar = null;
+    function filterCars() {
+      const city = document.getElementById("citySelect").value;
+      const sel = document.getElementById("carSelect");
+      sel.innerHTML = '<option value="">Select a Car</option>';
+      (carsByCity[city]||[]).forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.name; opt.textContent = c.name;
+        sel.appendChild(opt);
+      });
+      document.getElementById("carDetails").classList.add("hidden");
+    }
+    function updateCarDetails() {
+      const city = document.getElementById("citySelect").value;
+      const carName = document.getElementById("carSelect").value;
+      const info = (carsByCity[city]||[]).find(c=>c.name===carName);
+      if (info) {
+        selectedCar = info;
+        document.getElementById("carImage").src = info.img;
+        document.getElementById("carPrice").textContent = info.price;
+        document.getElementById("carDetails").classList.remove("hidden");
+        calculateTotal();
+      }
+    }
+    function calculateTotal() {
+      const days = +document.getElementById("daysInput").value||1;
+      document.getElementById("totalPrice").textContent = selectedCar
+        ? selectedCar.price * days
+        : 0;
+    }
+    // prevent past date
+    const dateInput = document.getElementById("dateInput");
+    dateInput.min = new Date().toISOString().split("T")[0];
+    // form submit
+    document.getElementById("reserveForm").addEventListener("submit", e => {
+      e.preventDefault();
+      document.getElementById("toast").classList.remove("hidden");
+      setTimeout(()=>document.getElementById("toast").classList.add("hidden"),3000);
+      e.target.reset();
+      document.getElementById("carDetails").classList.add("hidden");
+      document.getElementById("carSelect").innerHTML = '<option value="">Select a Car</option>';
+    });
+  </script>
+
+</body>
+</html>

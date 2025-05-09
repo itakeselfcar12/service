@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select State</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="state-selection-container">
+        <h2>Select State</h2>
+        <form id="stateForm">
+            <select id="stateSelect" onchange="loadCars()" required>
+                <option value="">Select State</option>
+                <option value="california">California</option>
+                <option value="texas">Texas</option>
+                <option value="florida">Florida</option>
+                <option value="newyork">New York</option>
+            </select>
+            <button type="submit">Next</button>
+        </form>
+    </div>
+
+    <div id="carsContainer" class="cars-container">
+        <!-- Cars will be displayed here based on the state -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

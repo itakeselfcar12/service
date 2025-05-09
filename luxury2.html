@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxury Car Rentals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .car-card:hover {
+      transform: scale(1.03);
+      transition: transform 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- Carousel -->
+  <section class="relative w-full h-64 md:h-96 overflow-hidden mb-10">
+    <div id="carouselSlides" class="flex h-full transition-transform duration-500">
+      <img src="https://cdn.pixabay.com/photo/2020/02/13/16/17/mercedes-4845370_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Mercedes G‑Class">
+      <img src="https://cdn.pixabay.com/photo/2020/08/30/13/15/bmw-5531033_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="BMW 7 Series">
+      <img src="https://cdn.pixabay.com/photo/2020/07/11/10/37/lamborghini-5391771_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Lamborghini Huracan">
+      <img src="https://cdn.pixabay.com/photo/2021/04/12/17/25/range-rover-6170926_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Range Rover Vogue">
+      <img src="https://cdn.pixabay.com/photo/2017/07/30/16/17/audi-2559753_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Audi A8">
+      <img src="https://cdn.pixabay.com/photo/2016/11/18/12/52/ferrari-1838784_1280.jpg"
+           class="w-full flex-shrink-0 object-cover" alt="Ferrari 488">
+    </div>
+    <button id="prevBtn"
+            class="absolute top-1/2 left-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">
+      ‹
+    </button>
+    <button id="nextBtn"
+            class="absolute top-1/2 right-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">
+      ›
+    </button>
+  </section>
+
+  <!-- Car Categories Filter (Removed SUV, Sedan, Sports, All) -->
+  <section class="py-10 px-4" id="cars">
+    <h2 class="text-3xl font-bold text-center mb-8">Our Fleet</h2>
+
+    <!-- Car Cards -->
+    <div id="car-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <!-- Dynamic car cards injected here -->
+    </div>
+  </section>
+
+   <!-- Book Section -->
+   <section id="buy" class="py-10 px-4 bg-white">
+    <h2 class="text-3xl font-bold text-center mb-8">Book Your Dream Car</h2>
+
+    <!-- Search Bar -->
+    <div class="flex flex-col md:flex-row items-center justify-between max-w-4xl mx-auto mb-6 gap-4">
+      <input id="buySearch" 
+             type="text" 
+             placeholder="Search cars..." 
+             class="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow shadow-sm hover:shadow-md" />
+    </div>
+
+    <!-- Car Listing -->
+    <div id="buy-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <!-- JS will inject cards here -->
+    </div>
+  </section>
+
+  <!-- Purchase Modal -->
+  <div id="purchaseModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg w-11/12 md:w-1/2 p-6 relative">
+      <button onclick="closePurchaseModal()" class="absolute top-3 right-4 text-2xl">&times;</button>
+      <h3 id="purchaseTitle" class="text-2xl font-bold mb-4">Book Car</h3>
+      <img id="purchaseImage" src="" alt="" class="w-full h-48 object-cover rounded mb-4" />
+      <p class="mb-4">Price: <span id="purchasePrice" class="font-semibold text-lg"></span></p>
+      <form id="purchaseForm" class="space-y-4">
+        <input type="text" placeholder="Your Name" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required />
+        <input type="email" placeholder="Your Email" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required />
+        <input type="tel" placeholder="Phone" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required />
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Purchase Toast -->
+  <div id="buyToast" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hidden">
+    Booking successful! We’ll be in touch shortly.
+  </div>
+
+
+  <!-- JavaScript -->
+  <script>
+    // —— Carousel Logic —— 
+    const slides = document.getElementById('carouselSlides');
+    const totalSlides = slides.children.length;
+    let slideIndex = 0;
+
+    function showSlide(i) {
+      slides.style.transform = `translateX(-${i * 100}%)`;
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+      showSlide(slideIndex);
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      showSlide(slideIndex);
+    });
+
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      showSlide(slideIndex);
+    }, 5000);
+
+    // —— Book Section Data & Logic —— 
+const buyCars = [
+{
+      id: 1,
+      name: "Mercedes Gls 450 4 matic",
+      category: "SUV",
+      priceText: "₹2,50,000 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2020/02/13/16/17/mercedes-4845370_1280.jpg"
+    },
+    {
+      id: 2,
+      name: "BMW 7 Series",
+      category: "Sedan",
+      priceText: "₹19,999 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2016/05/05/02/37/bmw-1370195_1280.jpg"
+     
+    },
+ 
+    {
+      id: 4,
+      name: "Range Rover Vogue",
+      category: "SUV",
+      priceText: "₹2,80,000 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2021/04/12/17/25/range-rover-6170926_1280.jpg"
+    },
+    {
+      id: 5,
+      name: "Audi A8",
+      category: "Sedan",
+      priceText: "₹2,40,000 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2017/07/30/16/17/audi-2559753_1280.jpg"
+    },
+    {
+      id: 6,
+      name: "Lamborghini Huracan",
+      category: "Sports",
+      priceText: "₹4,20,000 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2020/07/11/10/37/lamborghini-5391771_1280.jpg"
+    },
+    {
+    id: 7,
+    name: "Rolls Royce Ghost",
+    category: "Sedan",
+    priceText: "₹4,80,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2022/03/21/16/59/rolls-royce-7083038_1280.jpg"
+  },
+  {
+    id: 8,
+    name: "Bentley Continental GT",
+    category: "Sedan",
+    priceText: "₹4,10,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2016/12/10/20/18/bentley-1890494_1280.jpg"
+  },
+  {
+    id: 9,
+    name: "Lamborghini Urus",
+    category: "SUV",
+    priceText: "₹4,20,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2020/04/21/18/54/lamborghini-5073571_1280.jpg"
+  },
+  {
+    id: 10,
+    name: "BMW X7",
+    category: "SUV",
+    priceText: "₹2,50,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2023/06/23/11/45/bmw-8082734_1280.jpg"
+  },
+  {
+    id: 11,
+    name: "Toyota Land Cruiser",
+    category: "SUV",
+    priceText: "₹1,80,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2021/10/07/14/39/toyota-6687968_1280.jpg"
+  },
+  {
+    id: 12,
+    name: "Mustang GT",
+    category: "Sports",
+    priceText: "₹1,60,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2016/03/27/22/16/ford-mustang-1281656_1280.jpg"
+  },
+  {
+    id: 13,
+    name: "Audi Q8",
+    category: "SUV",
+    priceText: "₹6,499 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2020/03/19/15/13/audi-4947478_1280.jpg"
+  },
+  {
+    id: 14,
+    name: "Audi Q3",
+    category: "SUV",
+    priceText: "₹6,499 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2020/10/22/20/51/audi-5677686_1280.jpg"
+  },
+  // Manually added from your list with placeholder values
+  {
+    id: 15,
+    name: "Mercz GLS 450 4MATIC",
+    category: "SUV",
+    priceText: "₹2,70,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2017/03/13/12/53/mercedes-2138925_1280.jpg"
+  },
+  {
+    id: 16,
+    name: "BMW X5 M Sports",
+    category: "SUV",
+    priceText: "₹1,99,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2017/03/20/02/41/bmw-2150146_1280.jpg"
+  },
+  {
+    id: 17,
+    name: "BMW 5 Series",
+    category: "Sedan",
+    priceText: "₹90,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2017/02/05/16/56/bmw-2048748_1280.jpg"
+  },
+  {
+    id: 18,
+    name: "Fortuner Legender 4x4",
+    category: "SUV",
+    priceText: "₹75,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2021/10/01/15/57/toyota-fortuner-6670624_1280.jpg"
+  },
+  {
+    id: 19,
+    name: "Range Rover Evoque",
+    category: "SUV",
+    priceText: "₹1,20,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2022/10/09/07/12/range-rover-7509267_1280.jpg"
+  },
+  {
+    id: 20,
+    name: "Ford Endeavour",
+    category: "SUV",
+    priceText: "₹68,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2018/01/26/21/42/ford-3108433_1280.jpg"
+  },
+  {
+    id: 21,
+    name: "Mini Cooper",
+    category: "Hatchback",
+    priceText: "₹55,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2022/10/17/05/15/mini-cooper-7526913_1280.jpg"
+  },
+  {
+    id: 22,
+    name: "Mercz C220D",
+    category: "Sedan",
+    priceText: "₹80,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2018/01/14/23/12/mercedes-3080349_1280.jpg"
+  },
+  {
+    id: 23,
+    name: "Toyota Hilux",
+    category: "Pickup",
+    priceText: "₹95,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2020/01/10/21/56/toyota-hilux-4754645_1280.jpg"
+  },
+  {
+    id: 24,
+    name: "Mercz S Class",
+    category: "Luxury",
+    priceText: "₹3,30,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2016/12/07/04/39/mercedes-1880353_1280.jpg"
+  },
+  {
+    id: 25,
+    name: "Mercz E Class",
+    category: "Luxury",
+    priceText: "₹1,60,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2016/12/07/04/39/mercedes-1880353_1280.jpg"
+  },
+
+  ];
+
+
+
+const buyList = document.getElementById("buy-list");
+const searchInput = document.getElementById("buySearch");
+
+// render function
+function renderBuy() {
+  const q = searchInput.value.toLowerCase();
+  buyList.innerHTML = "";
+  buyCars
+    .filter(car => car.name.toLowerCase().includes(q))
+    .forEach(car => {
+      const card = document.createElement("div");
+      card.className = "group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1";
+      card.innerHTML = `
+        <img src="${car.img}" alt="${car.name}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform" />
+        <div class="p-4">
+          <h4 class="text-xl font-semibold mb-2">${car.name}</h4>
+          <p class="text-gray-600 mb-4">₹ ${car.price.toLocaleString()}</p>
+          <button onclick="openPurchaseModal(${car.id})" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
+            Book Now
+          </button>
+        </div>
+      `;
+      buyList.appendChild(card);
+    });
+}
+
+// search on input
+searchInput.addEventListener("input", renderBuy);
+
+// purchase modal
+const purchaseModal = document.getElementById("purchaseModal");
+const purchaseTitle = document.getElementById("purchaseTitle");
+const purchaseImage = document.getElementById("purchaseImage");
+const purchasePrice = document.getElementById("purchasePrice");
+const purchaseForm  = document.getElementById("purchaseForm");
+const buyToast      = document.getElementById("buyToast");
+
+function openPurchaseModal(id) {
+  const car = buyCars.find(c => c.id === id);
+  purchaseTitle.textContent = `Book ${car.name}`;
+  purchaseImage.src = car.img;
+  purchasePrice.textContent = `₹ ${car.price.toLocaleString()}`;
+  purchaseModal.classList.remove("hidden");
+}
+
+function closePurchaseModal() {
+  purchaseModal.classList.add("hidden");
+}
+
+// handle purchase form
+purchaseForm.addEventListener("submit", e => {
+  e.preventDefault();
+  closePurchaseModal();
+  buyToast.classList.remove("hidden");
+  setTimeout(() => buyToast.classList.add("hidden"), 3000);
+  e.target.reset();
+});
+
+// init
+renderBuy();
+  </script>
+</body>
+</html>

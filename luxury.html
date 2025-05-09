@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxury Car Rentals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  
+<script>
+ emailjs.init("service_iszcc3f");
+</script>
+
+<style>
+  .car-card:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease-in-out;
+  }
+  nav {
+background: #111;
+color: rgb(24, 24, 24);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 15px 20px;
+position: sticky;
+top: 0;
+z-index: 999;
+}
+
+nav a {
+color: white;
+margin: 0 10px;
+text-decoration: none;
+}
+
+nav select {
+padding: 5px;
+border-radius: 4px;
+border: none;
+}
+#themeToggle {
+position: fixed;
+top: 60px;
+right: 20px;
+width: 50px;
+height: 50px;
+padding-top: 0;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+font-size: 20px;
+background-color: #f1f1f1;
+color: #333;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+z-index: 999;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+#themeToggle:hover {
+transform: rotate(15deg);
+}
+
+body.dark #themeToggle {
+background-color: #444;
+color: #fff;
+}
+
+#themeToggle i {
+transition: transform 0.4s ease;
+}
+
+#themeToggle.animate i {
+transform: rotate(180deg);
+}
+body.dark {
+background-color: #121212;
+color: #e0e0e0;
+}
+
+body.dark nav {
+background-color: #222;
+}
+
+body.dark .card {
+background-color: #1e1e1e;
+color: #fff;
+border-color: #444;
+}
+
+body.dark header {
+color: #fff;
+}
+
+body.dark .contact {
+background-color: #2a2a2a;
+color: #fff;
+}
+
+body.dark footer {
+background-color: #111;
+color: #ccc;
+}
+
+body.dark a {
+color: #ffa64d;
+}
+</style>
+
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+  <nav>
+    <div class="text-white text-xl font-bold">I Take Self Car</div>
+    <div>
+      <a href="#cars">Cars</a>
+      <a href="welcome4 (1).html">Cities</a>
+      <a href="luxury.html">Luxury Cars</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div>
+      <label for="city-filter" style="color:white;">Choose City: </label>
+      <select id="city-filter">
+        <option value="">Select</option>
+        <option value="all.html">All</option>
+        <option value="hyderabad.html">Hyderabad</option>
+        <option value="bangalore.html">Bangalore</option>
+        <option value="chennai.html">Chennai</option>
+        <option value="mumbai.html">Mumbai</option>
+        <option value="delhi.html">Delhi</option>
+        <option value="pune.html">Pune</option>
+      </select>
+    </div>
+  </nav>
+
+  <button id="themeToggle"><i class="fas fa-moon"></i></button>
+    <!-- Carousel -->
+    <section class="relative w-full h-64 md:h-96 overflow-hidden mb-10">
+      <div id="carouselSlides" class="flex h-full transition-transform duration-500">
+        <img src="https://cdn.pixabay.com/photo/2020/02/13/16/17/mercedes-4845370_1280.jpg"
+             class="w-full flex-shrink-0 object-cover" alt="Mercedes G‑Class">
+        <img src="https://cdn.pixabay.com/photo/2020/08/30/13/15/bmw-5531033_1280.jpg"
+             class="w-full flex-shrink-0 object-cover" alt="BMW 7 Series">
+        <img src="https://cdn.pixabay.com/photo/2020/07/11/10/37/lamborghini-5391771_1280.jpg"
+             class="w-full flex-shrink-0 object-cover" alt="Lamborghini Huracan">
+        <img src="https://cdn.pixabay.com/photo/2021/04/12/17/25/range-rover-6170926_1280.jpg"
+             class="w-full flex-shrink-0 object-cover" alt="Range Rover Vogue">
+        <img src="https://cdn.pixabay.com/photo/2017/07/30/16/17/audi-2559753_1280.jpg"
+             class="w-full flex-shrink-0 object-cover" alt="Audi A8">
+        <img src="https://cdn.pixabay.com/photo/2016/11/18/12/52/ferrari-1838784_1280.jpg"
+             class="w-full flex-shrink-0 object-cover" alt="Ferrari 488">
+      </div>
+      <button id="prevBtn"
+              class="absolute top-1/2 left-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">
+        ‹
+      </button>
+      <button id="nextBtn"
+              class="absolute top-1/2 right-4 -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75">
+        ›
+      </button>
+    </section>
+
+    <!-- Car Cards -->
+    <!-- Car Cards -->
+<section class="py-10 px-4" id="cars">
+  <h2 class="text-3xl font-bold text-center mb-8">Our Fleet</h2>
+  <div id="car-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <!-- Dynamic car cards injected here -->
+  </div>
+</section>
+
+<br>
+<br>
+    <!-- Purchase Modal -->
+ 
+    <div id="purchaseModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg w-11/12 md:w-1/2 p-6 relative">
+        <button onclick="closePurchaseModal()" class="absolute top-3 right-4 text-2xl">&times;</button>
+        <h3 id="purchaseTitle" class="text-2xl font-bold mb-4">Book Now</h3>
+        <img id="purchaseImage" src="" alt="" class="w-full h-48 object-cover rounded mb-4" />
+        <p class="mb-4">Price: <span id="purchasePrice" class="font-semibold text-lg"></span></p>
+        <form id="rentalForm">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <input type="tel" id="phone" placeholder="Phone Number" required />
+          <input type="text" id="city" placeholder="City" required />
+          <input type="text" id="car" placeholder=" Driving Licence" required />
+          <input type="date" id="startDate" required />
+          <input type="date" id="endDate" required />
+          <br>
+          <br>
+          <a href="reserve.html"><button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full">
+            Reserve Now
+          </button></a> 
+          <br>
+          <br>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full">Book Now</button>
+        </form>
+        <!-- <div id="purchaseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+          <div class="bg-white p-6 rounded-lg w-full max-w-md shadow-lg relative">
+            <button onclick="closePurchaseModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-600">&times;</button>
+            <h3 class="text-xl font-semibold mb-4">Reserve Car</h3>
+            <form id="purchaseForm" class="space-y-4">
+              <input type="hidden" id="selectedCar" name="selected_car" />
+              <input type="text" name="name" placeholder="Your Name" class="w-full border rounded px-3 py-2" required />
+              <input type="email" name="email" placeholder="Your Email" class="w-full border rounded px-3 py-2" required />
+              <input type="tel" name="phone" placeholder="Phone Number" class="w-full border rounded px-3 py-2" required />
+              <input type="text" name="pickup_location" placeholder="Pickup Location" class="w-full border rounded px-3 py-2" required />
+              <input type="date" name="pickup_date" class="w-full border rounded px-3 py-2" required />
+              <input type="date" name="return_date" class="w-full border rounded px-3 py-2" required />
+              <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full">
+                Reserve Now
+              </button>
+            </form> -->
+            <br>
+           
+        
+      </div>
+    </div>
+    <form id="purchaseForm" class="space-y-4">
+      <input type="text" placeholder="Your Name" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required />
+      <input type="email" placeholder="Your email" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required />
+      <input type="tel" placeholder="Phone" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required />
+      <input type="tel" placeholder="Your Driving Licence" class="w-full border rounded-lg p-2 focus:ring-2 focus:ring-blue-500" required />
+    
+      <!-- Booking date inside the form -->
+      <label class="block font-semibold">Booking Date</label>
+      <input type="date" id="bookingDate" name="bookingDate" class="w-full p-3 border border-gray-300 rounded-lg mt-1" 
+        min="${new Date().toISOString().split('T')[0]}" max="2025-12-31" required />
+        <br>
+        <br>
+        <button onclick="window.location.href='reserve.html'" type="button"
+  class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full">
+  Reserve Now
+</button>
+ 
+      <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Confirm Booking</button>
+    </form>
+    
+    
+    <!-- Purchase Toast -->
+    <div id="buyToast" class="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hidden">
+      Purchase successful! We’ll be in touch shortly.
+    </div>
+ 
+<!-- Reserve Now Button -->
+<!-- <button onclick="openPurchaseModal('Hyundai Creta')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+  Reserve Now
+</button> -->
+
+<!-- Purchase Modal -->
+<div id="purchaseModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white p-6 rounded-lg w-full max-w-md shadow-lg relative">
+    <button onclick="closePurchaseModal()" class="absolute top-2 right-2 text-gray-500 hover:text-red-600">&times;</button>
+    <h3 class="text-xl font-semibold mb-4">Reserve Car</h3>
+    <form id="purchaseForm" class="space-y-4">
+      <input type="hidden" id="selectedCar" name="selected_car" />
+      <input type="text" name="name" placeholder="Your Name" class="w-full border rounded px-3 py-2" required />
+      <input type="email" name="email" placeholder="Your Email" class="w-full border rounded px-3 py-2" required />
+      <input type="tel" name="phone" placeholder="Phone Number" class="w-full border rounded px-3 py-2" required />
+      <input type="text" name="pickup_location" placeholder="Pickup Location" class="w-full border rounded px-3 py-2" required />
+      <input type="date" name="pickup_date" class="w-full border rounded px-3 py-2" required />
+      <input type="date" name="return_date" class="w-full border rounded px-3 py-2" required />
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full">
+        Reserve Now
+      </button>
+    </form>
+  </div>
+</div>
+  <!-- JavaScript -->
+  <script>
+    // —— Carousel Logic —— 
+    const slides = document.getElementById('carouselSlides');
+    const totalSlides = slides.children.length;
+    let slideIndex = 0;
+
+    function showSlide(i) {
+      slides.style.transform = `translateX(-${i * 100}%)`;
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+      showSlide(slideIndex);
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      showSlide(slideIndex);
+    });
+
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      showSlide(slideIndex);
+    }, 5000);
+    document.getElementById("nextBtn").onclick = () => {
+  slideIndex = (slideIndex + 1) % totalSlides;
+  showSlide(slideIndex);
+};
+document.getElementById("prevBtn").onclick = () => {
+  slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+  showSlide(slideIndex);
+};
+
+function showSlide(i) {
+  slides.style.transform = `translateX(-${i * 100}%)`;
+}
+  
+
+    // —— Buy Section Data & Logic ——   
+  // Data for cars
+  const cars = [
+    {
+      id: 1,
+      name: "Mercedes Gls 450 4 matic",
+      category: "SUV",
+      priceText: "₹2,50,000 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2020/02/13/16/17/mercedes-4845370_1280.jpg"
+    },
+    {
+      id: 2,
+      name: "BMW 7 Series",
+      category: "Sedan",
+      priceText: "₹19,999 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2016/05/05/02/37/bmw-1370195_1280.jpg"
+     
+    },
+ 
+    {
+      id: 4,
+      name: "Range Rover Vogue",
+      category: "SUV",
+      priceText: "₹2,80,000 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2021/04/12/17/25/range-rover-6170926_1280.jpg"
+    },
+    {
+      id: 5,
+      name: "Audi A8",
+      category: "Sedan",
+      priceText: "₹2,40,000 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2017/07/30/16/17/audi-2559753_1280.jpg"
+    },
+    {
+      id: 6,
+      name: "Lamborghini Huracan",
+      category: "Sports",
+      priceText: "₹4,20,000 / 24hrs",
+      img: "https://cdn.pixabay.com/photo/2020/07/11/10/37/lamborghini-5391771_1280.jpg"
+    },
+    {
+    id: 7,
+    name: "Rolls Royce Ghost",
+    category: "Sedan",
+    priceText: "₹4,80,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2022/03/21/16/59/rolls-royce-7083038_1280.jpg"
+  },
+  {
+    id: 8,
+    name: "Bentley Continental GT",
+    category: "Sedan",
+    priceText: "₹4,10,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2016/12/10/20/18/bentley-1890494_1280.jpg"
+  },
+  {
+    id: 9,
+    name: "Lamborghini Urus",
+    category: "SUV",
+    priceText: "₹4,20,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2020/04/21/18/54/lamborghini-5073571_1280.jpg"
+  },
+  {
+    id: 10,
+    name: "BMW X7",
+    category: "SUV",
+    priceText: "₹2,50,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2023/06/23/11/45/bmw-8082734_1280.jpg"
+  },
+  {
+    id: 11,
+    name: "Toyota Land Cruiser",
+    category: "SUV",
+    priceText: "₹1,80,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2021/10/07/14/39/toyota-6687968_1280.jpg"
+  },
+  {
+    id: 12,
+    name: "Mustang GT",
+    category: "Sports",
+    priceText: "₹1,60,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2016/03/27/22/16/ford-mustang-1281656_1280.jpg"
+  },
+  {
+    id: 13,
+    name: "Audi Q8",
+    category: "SUV",
+    priceText: "₹6,499 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2020/03/19/15/13/audi-4947478_1280.jpg"
+  },
+  {
+    id: 14,
+    name: "Audi Q3",
+    category: "SUV",
+    priceText: "₹6,499 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2020/10/22/20/51/audi-5677686_1280.jpg"
+  },
+  // Manually added from your list with placeholder values
+  {
+    id: 15,
+    name: "Mercz GLS 450 4MATIC",
+    category: "SUV",
+    priceText: "₹2,70,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2017/03/13/12/53/mercedes-2138925_1280.jpg"
+  },
+  {
+    id: 16,
+    name: "BMW X5 M Sports",
+    category: "SUV",
+    priceText: "₹1,99,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2017/03/20/02/41/bmw-2150146_1280.jpg"
+  },
+  {
+    id: 17,
+    name: "BMW 5 Series",
+    category: "Sedan",
+    priceText: "₹90,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2017/02/05/16/56/bmw-2048748_1280.jpg"
+  },
+  {
+    id: 18,
+    name: "Fortuner Legender 4x4",
+    category: "SUV",
+    priceText: "₹75,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2021/10/01/15/57/toyota-fortuner-6670624_1280.jpg"
+  },
+  {
+    id: 19,
+    name: "Range Rover Evoque",
+    category: "SUV",
+    priceText: "₹1,20,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2022/10/09/07/12/range-rover-7509267_1280.jpg"
+  },
+  {
+    id: 20,
+    name: "Ford Endeavour",
+    category: "SUV",
+    priceText: "₹68,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2018/01/26/21/42/ford-3108433_1280.jpg"
+  },
+  {
+    id: 21,
+    name: "Mini Cooper",
+    category: "Hatchback",
+    priceText: "₹55,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2022/10/17/05/15/mini-cooper-7526913_1280.jpg"
+  },
+  {
+    id: 22,
+    name: "Mercz C220D",
+    category: "Sedan",
+    priceText: "₹80,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2018/01/14/23/12/mercedes-3080349_1280.jpg"
+  },
+  {
+    id: 23,
+    name: "Toyota Hilux",
+    category: "Pickup",
+    priceText: "₹95,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2020/01/10/21/56/toyota-hilux-4754645_1280.jpg"
+  },
+  {
+    id: 24,
+    name: "Mercz S Class",
+    category: "Luxury",
+    priceText: "₹3,30,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2016/12/07/04/39/mercedes-1880353_1280.jpg"
+  },
+  {
+    id: 25,
+    name: "Mercz E Class",
+    category: "Luxury",
+    priceText: "₹1,60,000 / 24hrs",
+    img: "https://cdn.pixabay.com/photo/2016/12/07/04/39/mercedes-1880353_1280.jpg"
+  },
+
+  ];
+
+  // Get the car-list element where the cards will be inserted
+ 
+
+const carList = document.getElementById("car-list");
+carList.innerHTML = cars.map(car => `
+  <a href="${car.link}" class="block">
+    <div class="card car-card shadow-lg rounded-lg overflow-hidden transition hover:shadow-xl">
+      <img src="${car.image}" alt="${car.name}" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">${car.name}</h3>
+        <p class="text-gray-600">${car.price}</p>
+        <p class="text-gray-600">${car.category}</p>
+        <p class="text-lg font-semibold text-gray-800">${car.priceText}</p>
+      </div>
+    </div>
+  </a>
+`).join('');
+  // Iterate over the cars array and create card HTML
+  cars.forEach(car => {
+    const carCard = document.createElement('div');
+    carCard.classList.add('car-card', 'bg-white', 'rounded-lg', 'shadow-lg', 'overflow-hidden', 'transform', 'transition-all', 'duration-300');
+
+    carCard.innerHTML = `
+      <img src="${car.img}" alt="${car.name}" class="w-full h-48 object-cover">
+      
+      <div class="p-4">
+        <h3 class="text-xl font-bold">${car.name}</h3>
+        <p class="text-gray-600">${car.category}</p>
+        <p class="text-lg font-semibold text-gray-800">${car.priceText}</p>
+      </div>
+    `;
+
+    // Append the car card to the car list
+    carList.appendChild(carCard);
+  });
+
+
+// Render
+const grid = document.getElementById("carGrid");
+cars.forEach(car => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <img src="${car.img}" alt="${car.name}">
+    <div class="card-body">
+      <h3>${car.name}</h3>
+      <p>${car.category}</p>
+      <p><strong>${car.priceText}</strong></p>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+
+    const buySearchInput = document.getElementById('buySearch');
+    const buyList = document.getElementById('buy-list');
+
+    function displayCars(cars) {
+      buyList.innerHTML = '';
+      cars.forEach(car => {
+        const carCard = document.createElement('div');
+        carCard.classList.add('bg-white', 'rounded-lg', 'shadow-lg', 'overflow-hidden', 'transition-transform', 'duration-300', 'hover:scale-105');
+        carCard.innerHTML = `
+          <img src="${car.img}" class="w-full h-48 object-cover" alt="${car.name}">
+          <div class="p-4">
+            <h3 class="text-xl font-semibold">${car.name}</h3>
+            <p class="text-gray-600">₹${car.price.toLocaleString()}</p>
+            <button onclick="openPurchaseModal(${car.id})" class="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Book Now</button>
+          </div>
+        `;
+        buyList.appendChild(carCard);
+      });
+    }
+
+    function openPurchaseModal(carId) {
+      const car = buyCars.find(car => car.id === carId);
+      document.getElementById('purchaseImage').src = car.img;
+      document.getElementById('purchaseTitle').textContent = `Book ${car.name}`;
+      document.getElementById('purchasePrice').textContent = `₹${car.price.toLocaleString()}`;
+      document.getElementById('purchaseModal').classList.remove('hidden');
+    }
+    function openPurchaseModal(name, image, price) {
+  document.getElementById("purchaseTitle").innerText = name;
+  document.getElementById("purchaseImage").src = image;
+  document.getElementById("purchasePrice").innerText = price;
+  document.getElementById("purchaseModal").classList.remove("hidden");
+}
+
+function closePurchaseModal() {
+  document.getElementById("purchaseModal").classList.add("hidden");
+}
+
+    function closePurchaseModal() {
+      document.getElementById('purchaseModal').classList.add('hidden');
+    }
+
+    function filterCars(searchTerm) {
+      const filteredCars = buyCars.filter(car => car.name.toLowerCase().includes(searchTerm.toLowerCase()));
+      displayCars(filteredCars);
+    }
+
+    buySearchInput.addEventListener('input', (e) => {
+      filterCars(e.target.value);
+    });
+    function handleSearch() {
+  const query = searchInput.value.trim().toLowerCase();
+  const filteredCars = cars.filter(car =>
+    car.name.toLowerCase().includes(query) ||
+    car.city.toLowerCase().includes(query)
+  );
+  renderCars(filteredCars);
+}
+
+    // Initialize the car listing
+    displayCars(buyCars);
+
+    // Handle form submission
+    document.getElementById('purchaseForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('purchaseModal').classList.add('hidden');
+      document.getElementById('buyToast').classList.remove('hidden');
+      setTimeout(() => document.getElementById('buyToast').classList.add('hidden'), 3000);
+    });
+    document.getElementById('purchaseForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // Get the selected date
+  const bookingDate = document.getElementById('bookingDate').value;
+
+  // If no date is selected, show an alert
+  if (!bookingDate) {
+    alert("Please select a booking date.");
+    return;
+  }
+
+  // Calculate the number of days from today to the booking date (if needed)
+  const today = new Date();
+  const selectedDate = new Date(bookingDate);
+  const timeDiff = selectedDate - today;
+  const daysDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));  // Convert milliseconds to days
+
+  if (daysDifference < 0) {
+    alert("The selected date has already passed. Please select a future date.");
+    return;
+  }
+
+  // Show a confirmation message (you can customize this as needed)
+  alert(`You have successfully booked the car for ${bookingDate}.`);
+  document.getElementById('purchaseModal').classList.add('hidden');
+  document.getElementById('buyToast').classList.remove('hidden');
+  setTimeout(() => document.getElementById('buyToast').classList.add('hidden'), 3000);
+});
+document.getElementById('bookingDate').valueAsDate = new Date();
+document.getElementById('bookingDate').addEventListener('change', function() {
+  const selectedDate = this.value;
+  document.getElementById('selectedDateDisplay').textContent = `Selected Date: ${selectedDate}`;
+  document.getElementById('purchaseForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const bookingDate = document.getElementById('bookingDate').value;
+  if (!bookingDate) {
+    alert("Please select a booking date.");
+    return;
+  }
+
+  // Optional: display selected date
+  document.getElementById('selectedDateDisplay').textContent = `Booking Date: ${bookingDate}`;
+
+  // Show confirmation toast
+  document.getElementById('purchaseModal').classList.add('hidden');
+  document.getElementById('buyToast').classList.remove('hidden');
+  setTimeout(() => document.getElementById('buyToast').classList.add('hidden'), 3000);
+});
+
+});
+document.getElementById("rentalForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // EmailJS send
+  emailjs.send("service_iszcc3f", "YOUR_TEMPLATE_ID", {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    city: document.getElementById("city").value,
+    // car: document.getElementById("car").value,
+    start_date: document.getElementById("startDate").value,
+    end_date: document.getElementById("endDate").value,
+  });
+
+  // WhatsApp send
+  const phoneNumber = "+919010660212"; // your WhatsApp number
+  const message = `Rental Inquiry:
+Name: ${document.getElementById("name").value}
+Phone: ${document.getElementById("phone").value}
+City: ${document.getElementById("city").value}
+// Car: ${document.getElementById("car").value}
+From: ${document.getElementById("startDate").value}
+To: ${document.getElementById("endDate").value}`;
+
+  const url = `https://wa.me/${phoneNumber.replace("+919010660212", "+916302121490")}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+});
+
+emailjs.send("service_iszcc3f", "template_id", {
+  name: form.name.value,
+  phone: form.phone.value,
+  city: form.city.value,
+  licence: form.car.value,
+  start_date: form.startDate.value,
+  end_date: form.endDate.value,
+})
+.then(() => {
+  toast.classList.remove('hidden');
+  setTimeout(() => toast.classList.add('hidden'), 4000);
+})
+.catch(error => {
+  alert("Failed to send booking: " + error);
+});
+
+
+emailjs.init("service_iszcc3f"); // Replace with your EmailJS user ID
+
+function openPurchaseModal(carName) {
+  document.getElementById("purchaseModal").classList.remove("hidden");
+  document.getElementById("selectedCar").value = carName;
+}
+
+function closePurchaseModal() {
+  document.getElementById("purchaseModal").classList.add("hidden");
+}
+
+// Handle form submission
+document.getElementById("purchaseForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  emailjs.sendForm('service_iszcc3f', 'YOUR_TEMPLATE_ID', this)
+    .then(function () {
+      alert('Reservation sent successfully!');
+      closePurchaseModal();
+    }, function (error) {
+      alert('Failed to send reservation. Please try again.');
+      console.error(error);
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const cities = [
+    { name: 'All', url: 'all.html' },
+    { name: 'Hyderabad', url: 'hyderabad.html' },
+    { name: 'Bangalore', url: 'bangalore.html' },
+    { name: 'Chennai', url: 'chennai.html' },
+    { name: 'Mumbai', url: 'mumbai.html' },
+    { name: 'Delhi', url: 'delhi.html' },
+    { name: 'Pune', url: 'pune.html' }
+  ];
+
+  const citySelect = document.getElementById("city-filter");
+
+  // Add default "Choose City" option
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Choose City";
+  defaultOption.selected = true;
+  defaultOption.disabled = true;
+  citySelect.appendChild(defaultOption);
+
+  // Populate cities
+  cities.forEach(city => {
+    const option = document.createElement("option");
+    option.value = city.url;
+    option.textContent = city.name;
+    citySelect.appendChild(option);
+  });
+
+  // Add event listener
+  citySelect.addEventListener("change", function () {
+    const selectedUrl = citySelect.value;
+    if (selectedUrl) {
+      window.location.href = selectedUrl;
+    }
+  });
+});
+
+
+  </script>
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const icon = themeToggle.querySelector("i");
+    const body = document.body;
+  
+    function updateIcon(theme) {
+      icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+    }
+  
+    function initializeTheme() {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      body.classList.remove("light", "dark");
+      body.classList.add(savedTheme);
+      updateIcon(savedTheme);
+    }
+  
+    function toggleTheme() {
+      const currentTheme = body.classList.contains("dark") ? "dark" : "light";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      body.classList.remove(currentTheme);
+      body.classList.add(newTheme);
+      localStorage.setItem("theme", newTheme);
+      updateIcon(newTheme);
+  
+      themeToggle.classList.add("animate");
+      setTimeout(() => {
+        themeToggle.classList.remove("animate");
+      }, 400);
+    }
+  
+    themeToggle.addEventListener("click", toggleTheme);
+    initializeTheme();
+  </script>
+  
+  <script>
+    document.getElementById("city-filter").addEventListener("change", function () {
+      const selected = this.value;
+      if (selected) {
+        window.location.href = selected;
+      }
+    });
+  </script>
+</body>
+</html>
