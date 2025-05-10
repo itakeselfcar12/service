@@ -3,244 +3,230 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact - I Take Self - Car Rentals</title>
+  <title>Contact - I Take Self Car Rentals Services</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f5f5f5;
-      color: #222;
-      transition: background-color 0.4s, color 0.4s;
-    }
-
-    /* Navbar */
-    nav {
-      background-color: #111;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    nav .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #ff5a00;
-    }
-    nav .nav-links a {
-      color: #fff;
-      margin-left: 20px;
-      text-decoration: none;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-    nav .nav-links a:hover {
-      color: #ff5a00;
-    }
-
-    /* Header */
-    header {
-      background-color: #222;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 18px;
-      opacity: 0.8;
-    }
-
-    /* Contact Section */
-    .contact-form-section {
-      background: #fff;
-      margin: 40px auto;
-      max-width: 800px;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-      transition: background 0.4s;
-    }
-    .contact-form-section h2 {
-      text-align: center;
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-    .contact-form-section p {
-      text-align: center;
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 30px;
-    }
-    .contact-form {
-      display: grid;
-      gap: 20px;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      padding: 14px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      transition: border 0.3s;
-    }
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      border-color: #ff5a00;
-      outline: none;
-    }
-    .contact-form button {
-      padding: 14px;
-      font-size: 18px;
-      background-color: #ff5a00;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .contact-form button:hover {
-      background-color: #e04e00;
-    }
-
-    /* Contact Options */
-    .contact-options {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .contact-options a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      background-color: #ff5a00;
-      color: white;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-    .contact-options a:hover {
-      background-color: #e04e00;
-    }
-
-    /* Footer */
-    footer {
-      background-color: #222;
-      color: #fff;
-      text-align: center;
-      padding: 25px 20px;
-    }
-    .social a {
-      color: #fff;
-      margin: 0 10px;
-      font-size: 20px;
-      transition: color 0.3s;
-    }
-    .social a:hover {
-      color: #ff5a00;
-    }
-
-    /* Dark Mode */
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
-    }
-    body.dark-mode header,
-    body.dark-mode footer,
-    body.dark-mode nav {
-      background-color: #1f1f1f;
-      color: #e0e0e0;
-    }
-    body.dark-mode nav .nav-links a {
-      color: #ddd;
-    }
-    body.dark-mode nav .nav-links a:hover {
-      color: #ff9800;
-    }
-    body.dark-mode .contact-form-section {
-      background-color: #1e1e1e;
-      color: #f0f0f0;
-    }
-    body.dark-mode .contact-form input,
-    body.dark-mode .contact-form textarea {
-      background-color: #2c2c2c;
-      border-color: #444;
-      color: #eee;
-    }
-    body.dark-mode .contact-form input::placeholder,
-    body.dark-mode .contact-form textarea::placeholder {
-      color: #aaa;
-    }
-    body.dark-mode .contact-form button,
-    body.dark-mode .contact-options a {
-      background-color: #ff9800;
-    }
-    body.dark-mode .contact-form button:hover,
-    body.dark-mode .contact-options a:hover {
-      background-color: #e68900;
-    }
-    body.dark-mode .social a:hover {
-      color: #ff9800;
-    }
-
-    /* Dark Mode Toggle */
-    /* .dark-mode-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 10px 18px;
-      background: #ff5a00;
-      color: white;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 16px;
-      z-index: 1001;
-      transition: background 0.3s;
-    }
-    .dark-mode-toggle:hover {
-      background-color: #e04e00;
-    }
-    .theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  z-index: 1001;
-  font-size: 30px;
-  color: #ff5a00;
-  transition: color 0.3s;
-}
-.theme-toggle:hover {
-  color: #e04e00;
-}
-.theme-toggle-sr {
-  position: absolute;
-  width: 1px;
-  height: 1px;
+    /* General Reset & Typography */
+* {
+  margin: 0;
   padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-} */
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f5f5;
+  color: #222;
+  transition: background-color 0.4s, color 0.4s;
+  line-height: 1.6;
+}
 
+/* Navbar */
+nav {
+  background-color: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+nav .logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ff5a00;
+  transition: transform 0.3s ease;
+}
+nav .logo:hover {
+  transform: scale(1.05);
+}
+nav .nav-links a {
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  position: relative;
+}
+nav .nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: #ff5a00;
+  left: 0;
+  bottom: -4px;
+  transition: width 0.3s ease;
+}
+nav .nav-links a:hover::after {
+  width: 100%;
+}
+nav .nav-links a:hover {
+  color: #ff5a00;
+}
+
+/* Header */
+header {
+  background: linear-gradient(to right, #ff5a00, #ff934f);
+  color: #fff;
+  padding: 70px 20px;
+  text-align: center;
+}
+header h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+header p {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* Contact Form Section */
+.contact-form-section {
+  background: #fff;
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.contact-form-section h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.contact-form-section p {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Form Styling */
+.contact-form {
+  display: grid;
+  gap: 20px;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #ff5a00;
+  outline: none;
+  box-shadow: 0 0 6px rgba(255, 90, 0, 0.3);
+}
+.contact-form button {
+  padding: 14px;
+  font-size: 18px;
+  background: linear-gradient(45deg, #ff5a00, #ff934f);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.3s, background 0.3s;
+}
+.contact-form button:hover {
+  transform: scale(1.05);
+}
+
+/* Contact Options with Card Hover */
+.contact-options {
+  text-align: center;
+  margin-top: 40px;
+}
+.contact-options a {
+  display: inline-block;
+  margin: 10px;
+  padding: 14px 30px;
+  background-color: #fff;
+  color: #ff5a00;
+  border-radius: 12px;
+  border: 2px solid #ff5a00;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.contact-options a:hover {
+  background-color: #ff5a00;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(255, 90, 0, 0.3);
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 25px 20px;
+}
+.social a {
+  color: #fff;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: transform 0.3s, color 0.3s;
+}
+.social a:hover {
+  transform: scale(1.2);
+  color: #ff5a00;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode nav {
+  background-color: #1f1f1f;
+}
+body.dark-mode .nav-links a {
+  color: #ddd;
+}
+body.dark-mode .nav-links a:hover {
+  color: #ff9800;
+}
+body.dark-mode .contact-form-section {
+  background-color: #1e1e1e;
+}
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+  background-color: #2c2c2c;
+  border-color: #444;
+  color: #eee;
+}
+body.dark-mode .contact-form input::placeholder,
+body.dark-mode .contact-form textarea::placeholder {
+  color: #aaa;
+}
+body.dark-mode .contact-form button,
+body.dark-mode .contact-options a {
+  background: #ff9800;
+  border-color: #ff9800;
+  color: #fff;
+}
+body.dark-mode .contact-form button:hover,
+body.dark-mode .contact-options a:hover {
+  background: #e68900;
+}
+body.dark-mode .social a:hover {
+  color: #ff9800;
+}
+
+/* Theme Toggle Button */
 .theme-toggle {
   position: fixed;
   top: 20px;
@@ -253,34 +239,108 @@
   color: #ff5a00;
   transition: color 0.3s;
 }
-
 .theme-toggle:hover {
   color: #e04e00;
 }
 
+/* Fade-in Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
+/* Floating WhatsApp Button */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  font-size: 28px;
+  padding: 16px;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1002;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+/* Logo and Nav Styling */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+.logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff5a00;
+}
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: #ff5a00;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #111;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 999;
+  }
+  .nav-links a {
+    margin: 10px 0;
+    font-size: 18px;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+/* Extra spacing for theme toggle */
+.theme-toggle {
+  top: 80px; /* Push it down below menu on mobile */
+  right: 20px;
+}
+  .logo-img{
+      border-radius: 50px;
+    }
   </style>
 </head>
 <body>
 
  <!-- Toggle (placed inside <body>) -->
-<button 
+  <button 
   class="theme-toggle"
   type="button"
   title="Toggle theme"
   aria-label="Toggle theme"
   id="themeToggleButton"
 >
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  aria-hidden="true"
-  width="1em"
-  height="1em"
-  fill="currentColor"
-  stroke-linecap="round"
-  class="theme-toggle__classic"
-  viewBox="0 0 32 32"
->
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" fill="currentColor" class="theme-toggle__classic" viewBox="0 0 32 32">
   <defs>
     <clipPath id="theme-toggle__classic__cutout">
       <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
@@ -300,80 +360,101 @@
     </g>
   </g>
 </svg>
-
 </button>
 
+<!-- Navbar -->
+<nav>
+  <div class="nav-left">
+    <img src="I TAKE SELF.png" alt="DriveNow Logo" class="logo-img" />
+    <div class="logo-text">I Take Self Car Rental Services</div>
+  </div>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="welcome4 (1).html">Home</a>
+    <a href="car-listing (1).html">Cars</a>
+    <a href="#">Offers</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
 
-  <nav>
-    <div class="logo">I Take Self Car</div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="cars.html">Cars</a>
-      <a href="cities.html">Cities</a>
-      <a href="offers.html">Offers</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
+<!-- Header -->
+<header>
+  <h1>Contact I Take Self</h1>
+  <p>We're here to assist you with all your self-drive car rental needs!</p>
+</header>
 
-  <header>
-    <h1>Contact I Take Self</h1>
-    <p>We're here to assist you with all your self-drive car rental needs!</p>
-  </header>
+<!-- Contact Form -->
+<section class="contact-form-section fade-in">
+  <h2>Get in Touch</h2>
+  <p>If you have any questions or want to book a car, please reach out. We're available 24/7!</p>
+  <form class="contact-form" action="submit_form.php" method="post">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <input type="tel" name="phone" placeholder="Your Phone" required />
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+  <div class="contact-options">
+    <a href="https://wa.me/918121131870" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+    <a href="tel:+918121131870"><i class="fas fa-phone"></i> Call Now</a>
+  </div>
+</section>
 
-  <section class="contact-form-section">
-    <h2>Get in Touch</h2>
-    <p>If you have any questions or want to book a car, please reach out. We're available 24/7!</p>
+<!-- Footer -->
+<footer>
+<p>&copy; 2025 I TAKE SELF Car Rental Services. All rights reserved.</p>
+<p>📍Head Office- Hyderabad, Telangana, India</p>
+<p>📧 itakeselfcar@gmail.com </p>
+</footer>
 
-    <form class="contact-form" action="submit_form.php" method="post">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <input type="tel" name="phone" placeholder="Your Phone" required />
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/918121131870" class="floating-whatsapp" title="Chat on WhatsApp" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
-    <div class="contact-options">
-      <a href="https://wa.me/918121131870" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
-      <a href="tel:+918121131870"><i class="fas fa-phone"></i> Call Now</a>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 DriveNow Rentals. All rights reserved.</p>
-    <div class="social">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-    <p>Hyderabad, Telangana, India</p>
-  </footer>
-<!-- <script>
-  const checkbox = document.getElementById("themeToggleCheckbox");
-  checkbox.addEventListener("change", () => {
-    document.body.classList.toggle("dark-mode");
-  });
-</script> -->
-
+<!-- Scripts -->
 <script>
   const toggleButton = document.getElementById("themeToggleButton");
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
 
-  // Load saved theme on page load
+  // Load saved theme
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
   }
 
+  // Toggle theme
   toggleButton.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     const theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
     localStorage.setItem("theme", theme);
   });
-</script>
 
-  <!-- <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-      const isDark = document.body.classList.contains("dark-mode");
-      document.querySelector(".dark-mode-toggle").textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
-    }
-  </script> -->
+  // Mobile menu toggle
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+  // Fade-in scroll
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+</script>  
+
+
 </body>
 </html>
