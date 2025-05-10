@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> I Take Self | Car Rental Booking</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Include Flatpickr -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 
 
 <script>
@@ -136,64 +135,123 @@
   <script>
  const carsByCity = {
      Hyderabad: [
-  { name: 'Swift', price: 2000 },
-  { name: 'Baleno', price: 2200 },
-  { name: 'Brezza', price: 2500 },
-  { name: 'Nexon', price: 2700 },
-  { name: 'XUV700', price: 4000 },
-  { name: 'Fortuner', price: 6000 },
-  { name: 'Ertiga', price: 2800 },
-  { name: 'Urban Cruiser', price: 2600 },
-  { name: 'Seltos', price: 3000 },
-  { name: 'Venue', price: 2700 },
-  { name: 'Alcazar', price: 3800 },
+  { name: 'Swift', price: 1999 },
+  { name: 'Baleno', price: 2299 },
+  { name: 'Brezza', price: 2499 },
+  { name: 'Nexon', price: 2999 },
+  { name: 'XUV700', price: 7999  },
+  { name: 'Fortuner', price: 7999 },
+  { name: 'Ertiga', price: 3999 },
+  { name: 'Urban Cruiser', price: 3499 },
+  { name: 'Seltos', price: 4499 },
+  { name: 'Venue', price: 3999 },
+  { name: 'Alcazar', price: 5999 },
   { name: 'Thar', price: 5000 },
-  { name: 'Innova Crysta', price: 4500 },
-  { name: 'Verna', price: 3500 },
-  { name: 'Creta', price: 4000 },
-  { name: 'Scorpio Classic', price: 4200 },
-  { name: 'i20 Sportz', price: 2500 },
-  { name: 'Innova Hybrid', price: 4700 },
-  { name: 'XUV500', price: 3700 },
-  { name: 'Scorpio N', price: 4400 }
+  { name: 'Innova Crysta', price: 5499 },
+  { name: 'Verna', price: 3499 },
+  { name: 'Creta', price: 4299 },
+  { name: 'Scorpio Classic', price: 4999 },
+  { name: 'i20 Sportz', price: 2199 },
+  { name: 'Innova Hybrid', price: 6499 },
+  { name: 'XUV500', price: 5999 },
+  { name: 'Scorpio N', price: 5999 }
 ],
  Delhi: [
-    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Brezza', price: 2500 },
-    { name: 'Nexon', price: 2600 }, { name: 'XUV700', price: 4200 }, { name: 'Fortuner', price: 6000 },
-    { name: 'Ertiga', price: 2800 }, { name: 'Urban Cruiser', price: 2700 }, { name: 'Seltos', price: 3200 },
-    { name: 'Thar', price: 5000 }, { name: 'Innova Crysta', price: 4500 }, { name: 'Verna', price: 3500 },
-    { name: 'Creta', price: 4000 }, { name: 'Scorpio Classic', price: 4100 }, { name: 'i20 Sportz', price: 2400 },
-    { name: 'Innova Hybrid', price: 4700 }
+     { name: 'Swift', price: 1999 },
+  { name: 'Baleno', price: 2299 },
+  { name: 'Brezza', price: 2499 },
+  { name: 'Nexon', price: 2999 },
+  { name: 'XUV700', price: 7999  },
+  { name: 'Fortuner', price: 7999 },
+  { name: 'Ertiga', price: 3999 },
+    { name: 'i20 Sportz', price: 2199 },
+    { name: 'Urban Cruiser', price: 3499 },
+  { name: 'Seltos', price: 4499 },
+    { name: 'Thar', price: 5000 },
+  { name: 'Innova Crysta', price: 5499 },
+  { name: 'Verna', price: 3499 },
+  { name: 'Creta', price: 4299 },
+  { name: 'Scorpio Classic', price: 4999 },
+ 
+  { name: 'Innova Hybrid', price: 6499 },
   ],
   Mumbai: [
-    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Brezza', price: 2500 },
-    { name: 'Nexon', price: 2600 }, { name: 'XUV700', price: 4200 }, { name: 'Fortuner', price: 6000 },
-    { name: 'Ertiga', price: 2800 }, { name: 'Alcazar', price: 3900 }, { name: 'Seltos', price: 3200 },
-    { name: 'Thar', price: 5000 }, { name: 'Innova Crysta', price: 4500 }, { name: 'Verna', price: 3500 },
-    { name: 'Creta', price: 4000 }, { name: 'Scorpio Classic', price: 4100 }, { name: 'Venue', price: 3700 },
-    { name: 'Innova Hybrid', price: 4700 }
+        { name: 'Swift', price: 1999 },
+  { name: 'Baleno', price: 2299 },
+  { name: 'Brezza', price: 2499 },
+  { name: 'Nexon', price: 2999 },
+  { name: 'XUV700', price: 7999  },
+  { name: 'Fortuner', price: 7999 },
+  { name: 'Ertiga', price: 3999 },
+ { name: 'Venue', price: 3999 },
+  { name: 'Alcazar', price: 5999 },
+  { name: 'Seltos', price: 4499 },
+    { name: 'Thar', price: 5000 },
+  { name: 'Innova Crysta', price: 5499 },
+  { name: 'Verna', price: 3499 },
+  { name: 'Creta', price: 4299 },
+  { name: 'Scorpio Classic', price: 4999 },
+  
+  { name: 'Innova Hybrid', price: 6499 },
   ],
   Pune: [
-    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Nexon', price: 2600 },
-    { name: 'Fortuner', price: 6000 }, { name: 'Ertiga', price: 2800 }, { name: 'XUV500', price: 4000 },
-    { name: 'Seltos', price: 3200 }, { name: 'Thar', price: 5000 }, { name: 'Innova Crysta', price: 4500 },
-    { name: 'Urban Cruiser', price: 2700 }, { name: 'Creta', price: 4000 }
+    { name: 'Swift', price: 1999 },
+  { name: 'Baleno', price: 2299 },
+  
+  { name: 'Nexon', price: 2999 },
+{ name: 'Venue', price: 3999 },
+   { name: 'Fortuner', price: 7999 },
+  { name: 'Ertiga', price: 3999 },
+  { name: 'Urban Cruiser', price: 3499 },
+  { name: 'Seltos', price: 4499 },
+    { name: 'Thar', price: 5000 },
+  { name: 'Innova Crysta', price: 5499 },
+  { name: 'XUV500', price: 5999 },
+  { name: 'Creta', price: 4299 },
   ],
   Chennai: [
-    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Nexon', price: 2600 },
-    { name: 'Fortuner', price: 6000 }, { name: 'Ertiga', price: 2800 }, { name: 'XUV700', price: 4200 },
-    { name: 'Seltos', price: 3200 }, { name: 'Thar', price: 5000 }, { name: 'Innova Crysta', price: 4500 },
-    { name: 'Urban Cruiser', price: 2700 }, { name: 'Creta', price: 4000 }, { name: 'Verna', price: 3500 },
-    { name: 'i20 Sportz', price: 2400 }, { name: 'Scorpio N', price: 4300 }, { name: 'Alcazar', price: 3900 },
-    { name: 'Innova Hybrid', price: 4700 }
+      { name: 'Swift', price: 1999 },
+  { name: 'Baleno', price: 2299 },
+  
+  { name: 'Nexon', price: 2999 },
+  { name: 'XUV700', price: 7999  },
+  { name: 'Fortuner', price: 7999 },
+  { name: 'Ertiga', price: 3999 },
+  { name: 'Urban Cruiser', price: 3499 },
+  { name: 'Seltos', price: 4499 },
+ 
+  { name: 'Alcazar', price: 5999 },
+  { name: 'Thar', price: 5000 },
+  { name: 'Innova Crysta', price: 5499 },
+  { name: 'Verna', price: 3499 },
+  { name: 'Creta', price: 4299 },
+  
+  { name: 'i20 Sportz', price: 2199 },
+  { name: 'Innova Hybrid', price: 6499 },
+  
+  { name: 'Scorpio N', price: 5999 }
   ],
   Bangalore: [
-    { name: 'Swift', price: 2000 }, { name: 'Baleno', price: 2200 }, { name: 'Nexon', price: 2600 },
-    { name: 'Fortuner', price: 6000 }, { name: 'Ertiga', price: 2800 }, { name: 'XUV700', price: 4200 },
-    { name: 'Seltos', price: 3200 }, { name: 'Thar', price: 5000 }, { name: 'Scorpio Classic', price: 4100 },
-    { name: 'Innova Hybrid', price: 4700 }, { name: 'Urban Cruiser', price: 2700 }, { name: 'Creta', price: 4000 },
-    { name: 'Verna', price: 3500 }, { name: 'Innova Crysta', price: 4500 }, { name: 'Scorpio N', price: 4300 },
-    { name: 'i20 Sportz', price: 2400 }, { name: 'Alcazar', price: 3900 }
+      { name: 'Swift', price: 1999 },
+  { name: 'Baleno', price: 2299 },
+  { name: 'Brezza', price: 2499 },
+  { name: 'Nexon', price: 2999 },
+  { name: 'XUV700', price: 7999  },
+  { name: 'Fortuner', price: 7999 },
+  { name: 'Ertiga', price: 3999 },
+  { name: 'Urban Cruiser', price: 3499 },
+  { name: 'Seltos', price: 4499 },
+  
+  { name: 'Alcazar', price: 5999 },
+  { name: 'Thar', price: 5000 },
+  { name: 'Innova Crysta', price: 5499 },
+  { name: 'Verna', price: 3499 },
+  { name: 'Creta', price: 4299 },
+  { name: 'Scorpio Classic', price: 4999 },
+  { name: 'i20 Sportz', price: 2199 },
+  { name: 'Innova Hybrid', price: 6499 },
+ 
+  { name: 'Scorpio N', price: 5999 }
   ],
     };
   
