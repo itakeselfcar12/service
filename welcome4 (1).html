@@ -5,12 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>I TAKE SELF Car - Rental Services</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
- <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
  <style>
+  footer {
+  background: #111;
+  color: #ccc;
+  font-size: 14px;
+  padding: 30px 20px;
+  line-height: 1.6;
+}
+
+  nav a:hover {
+  color: #ff5a00;
+}
+
+  .card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+  header a {
+  display: inline-block;
+  padding: 14px 30px;
+  font-weight: bold;
+  font-size: 16px;
+  background: #ff5a00;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background 0.3s ease;
+}
+
+header a:hover {
+  background: #e14a00;
+}
+
+  body { font-family: 'Poppins', sans-serif; }
+
     body { margin: 0; font-family: Arial, sans-serif; background: #f9f9f9; }
-    header { background: url('way.jpeg') center/cover no-repeat; color: rgb(0, 0, 0); padding: 100px 20px; text-align: center;  margin-bottom: 20px;
+    header { background: url('roadview.jpg') center/cover no-repeat; color: rgb(0, 0, 0); padding: 100px 20px; text-align: center;  margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); }
     header h1 { font-size: 48px; margin-bottom: 10px; }
@@ -314,7 +349,7 @@ body.dark a {
     <div class="cards">
       <!-- Each card includes city and cars as clickable links -->
       <div class="card" data-city="Hyderabad">
-        <img src="charminar.jpeg" alt="Hyderabad Cars" />
+        <a href="hyderabad.html"><img src="charminar.jpeg" alt="Hyderabad Cars" /></a>
         <h3>Hyderabad</h3>
         <p>
           <a href="swift.html">Swift</a>,
@@ -341,7 +376,7 @@ body.dark a {
       </div>
       
       <div class="card" data-city="Bangalore">
-          <img src="Bangalore.jpeg" alt="Bangalore Cars" />
+          <a href="Bangalore.html"><img src="Bangalore.jpeg" alt="Bangalore Cars" /></a>
           <h3>Bangalore</h3>
           <p>
             <a href="swift.html">Swift</a>,
@@ -365,7 +400,7 @@ body.dark a {
         </div>
         
       <div class="card" data-city="Chennai">
-        <img src="chennai.jpeg" alt="Chennai Cars" />
+        <a href="chennai.html"><img src="chennai.jpeg" alt="Chennai Cars" /></a>
         <h3>Chennai</h3>
         <p>
           <a href="swift.html">Swift</a>,
@@ -388,7 +423,7 @@ body.dark a {
       </div>
       
       <div class="card" data-city="Mumbai">
-        <img src="mumbai.jpeg" alt="Mumbai Cars" />
+       <a href="mumbai.html"><img src="mumbai.jpeg" alt="Mumbai Cars" /></a> 
         <h3>Mumbai</h3>
         <p>
           <a href="swift.html">Swift</a>,
@@ -411,7 +446,7 @@ body.dark a {
       </div>
       
       <div class="card" data-city="Delhi">
-        <img src="delhi.jpeg" alt="Delhi Cars" />
+        <a href="Delhi.html"><img src="delhi.jpeg" alt="Delhi Cars" /></a>
         <h3>Delhi</h3>
         <p>
           <a href="swift.html">Swift</a>, 
@@ -434,7 +469,7 @@ body.dark a {
       </div>
       
       <div class="card" data-city="Pune">
-        <img src="pune.jpeg" alt="Pune Cars" />
+        <a href="pune.html"><img src="pune.jpeg" alt="Pune Cars" /></a>
         <h3>Pune</h3>
         <p>
           <a href="seltos.html">Swift</a>,
