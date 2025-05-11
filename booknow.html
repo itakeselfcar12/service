@@ -6,42 +6,31 @@
   <title> I Take Self | Car Rental Booking</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Include Flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  #background-image {
+    background-image: url('book2.png');
+    background-size: cover;        /* Make it cover the whole screen */
+    background-position: center;   /* Center the image */
+    background-repeat: no-repeat;  /* Prevent tiling */
+    height: 100%;                  /* Match html/body height */
+    width: 100%;                   /* Ensure full width too */
+  }
+</style>
 
 
-<script>
-  flatpickr("#pickDate", {
-    enableTime: true,
-    dateFormat: "Y-m-d h:i K",  // 12-hr format
-    time_24hr: false
-  });
-
-  flatpickr("#dropDate", {
-    enableTime: true,
-    dateFormat: "Y-m-d h:i K",
-    time_24hr: false
-  });
-</script>
-
-  <style>
-    #background-image {
-      margin: 0;
-      padding: 0;
-      background-image: url('swift.webp');
-      background-size: cover;          /* Makes the image cover the entire area */
-      background-position: center;     /* Centers the image */
-      background-repeat: no-repeat;    /* Prevents tiling */
-      height: 100vh;                   /* Full height of the viewport */
-    }
-  </style>
-  
 </head>
 <body class="bg-gray-100 text-gray-800" id="background-image">
-  >
   <div class="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-lg mt-10">
     <h2 class="text-3xl font-bold text-center mb-6">Book Your Ride</h2>
     <form id="bookingForm" class="space-y-4">
@@ -75,7 +64,6 @@
           <option value="Pune">Pune</option>
           <option value="Chennai">Chennai</option>
         </select>
-        
       </div>
 
       <!-- Car Selection -->
@@ -89,34 +77,32 @@
         <!-- Pick-Up -->
         <div class="bg-gray-50 p-4 rounded-xl shadow hover:shadow-md transition">
           <label for="pickDate" class="flex items-center font-semibold text-gray-700 mb-2">
-            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" stroke-width="2"
-                 viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
+            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
             </svg>
             Pick-Up Date & Time
           </label>
           <input type="datetime-local" name="pickDate" id="pickDate"
-                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white shadow-inner"
-                 required>
+                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white shadow-inner" required>
         </div>
-      
         <!-- Drop-Off -->
         <div class="bg-gray-50 p-4 rounded-xl shadow hover:shadow-md transition">
           <label for="dropDate" class="flex items-center font-semibold text-gray-700 mb-2">
-            <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
-                 viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
+            <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z"/>
             </svg>
             Drop-Off Date & Time
           </label>
           <input type="datetime-local" name="dropDate" id="dropDate"
-                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:outline-none bg-white shadow-inner"
-                 required>
+                 class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:outline-none bg-white shadow-inner" required>
         </div>
       </div>
-      
+
+      <!-- Coupon Code -->
+      <div>
+        <label for="coupon" class="block font-medium mb-1">Coupon Code</label>
+        <input type="text" id="coupon" placeholder="Enter coupon code" class="input-style">
+      </div>
 
       <!-- Price -->
       <div class="mt-4">
@@ -129,13 +115,14 @@
       </button>
     </form>
   </div>
-<br>
-<br>
-<br>
+  <br><br><br>
+
   <script>
- const carsByCity = {
-     Hyderabad: [
-  { name: 'Swift', price: 1999 },
+    const carsByCity = {
+      Hyderabad: [
+        { name: 'Swift', price: 1999 },
+        { name: 'Baleno', price: 2299 },
+         { name: 'Swift', price: 1999 },
   { name: 'Baleno', price: 2299 },
   { name: 'Brezza', price: 2499 },
   { name: 'Nexon', price: 2999 },
@@ -254,91 +241,72 @@
   { name: 'Scorpio N', price: 5999 }
   ],
     };
-  
 
-    
     function updateCars() {
-  const city = document.getElementById('city').value;
-  const carSelect = document.getElementById('car');
-  carSelect.innerHTML = '';
+      const city = document.getElementById('city').value;
+      const carSelect = document.getElementById('car');
+      carSelect.innerHTML = '';
 
-  if (carsByCity[city]) {
-    carsByCity[city].forEach(car => {
-      const option = document.createElement('option');
-      option.value = `${car.name}|${car.price}`;
-      option.textContent = `${car.name} - ₹${car.price}/day`;
-      carSelect.appendChild(option);
-    });
-  }
+      if (carsByCity[city]) {
+        carsByCity[city].forEach(car => {
+          const option = document.createElement('option');
+          option.value = `${car.name}|${car.price}`;
+          option.textContent = `${car.name} - ₹${car.price}/day`;
+          carSelect.appendChild(option);
+        });
+      }
 
-  updatePrice();
-}
+      updatePrice();
+    }
 
-function getRentalDays() {
-  const pickInput = document.getElementById('pickDate').value;
-  const dropInput = document.getElementById('dropDate').value;
+    function getRentalDays() {
+      const pickInput = document.getElementById('pickDate').value;
+      const dropInput = document.getElementById('dropDate').value;
+      if (!pickInput || !dropInput) return 0;
 
-  if (!pickInput || !dropInput) return 0;
+      const pick = new Date(pickInput);
+      const drop = new Date(dropInput);
+      if (drop <= pick) return -1;
 
-  const pick = new Date(pickInput);
-  const drop = new Date(dropInput);
+      const diffMs = drop - pick;
+      const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      return days;
+    }
 
-  if (drop <= pick) return -1;
+    function updatePrice() {
+      const car = document.getElementById('car').value;
+      const totalSpan = document.getElementById('total');
+      const couponCode = document.getElementById('coupon').value;
 
-  const diffMs = drop - pick;
-  const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-  return days;
-  
-}
+      if (!car) {
+        totalSpan.textContent = '0';
+        return;
+      }
 
-function updatePrice() {
-  const car = document.getElementById('car').value;
-  const totalSpan = document.getElementById('total');
+      const [, pricePerDay] = car.split('|');
+      const days = getRentalDays();
 
-  if (!car) {
-    totalSpan.textContent = '0';
-    return;
-  }
+      if (days === -1) {
+        totalSpan.textContent = 'Invalid date range';
+        return;
+      }
 
-  const [, pricePerDay] = car.split('|');
-  const days = getRentalDays();
+      if (days === 0) {
+        totalSpan.textContent = 'Select pick & drop dates';
+        return;
+      }
 
-  if (days === -1) {
-    totalSpan.textContent = 'Invalid date range';
-    return;
-  }
+      let total = days * parseInt(pricePerDay);
 
-  if (days === 0) {
-    totalSpan.textContent = 'Select pick & drop dates';
-    return;
-  }
+      // Apply discount if coupon is valid
+      if (couponCode === 'ISMAIL30') {
+        total = total * 0.7;  // Apply 30% discount
+      }
 
-  const total = days * parseInt(pricePerDay);
-  totalSpan.textContent = `₹${total}`;
-}
-function formatDate12Hr(dateStr) {
-  const date = new Date(dateStr);
-  const options = {
-    year: 'numeric', month: 'short', day: 'numeric',
-    hour: 'numeric', minute: 'numeric',
-    hour12: true
-  };
-  return date.toLocaleString('en-IN', options);
-}
+      totalSpan.textContent = `₹${total.toFixed(2)}`;
+    }
 
-flatpickr("#pickDate", {
-    enableTime: true,
-    dateFormat: "Y-m-d h:i K",  // 12-hr format
-    time_24hr: false
-  });
-
-  flatpickr("#dropDate", {
-    enableTime: true,
-    dateFormat: "Y-m-d h:i K",
-    time_24hr: false
-  });
-
-function submitBooking() {
+   function submitBooking() {
   const form = document.getElementById('bookingForm');
   const data = new FormData(form);
   const [carName, carPrice] = data.get('car').split('|');
@@ -349,34 +317,82 @@ function submitBooking() {
     return;
   }
 
-  const total = days * parseInt(carPrice);
+  let total = days * parseInt(carPrice);
+  const couponCode = data.get('coupon');
+  if (couponCode === 'DISCOUNT30' || couponCode === 'ISMAIL30') {
+    total = total * 0.7;
+  }
 
   const body = `
-Name: ${data.get('name')}
-Phone: ${data.get('phone')}
-Email: ${data.get('email')}
-DL Number: ${data.get('dl')}
-Purpose: ${data.get('purpose')}
-City: ${data.get('city')}
-Car: ${carName}
-Price/Day: ₹${carPrice}
-Pick Date: ${data.get('pickDate')}
-Drop Date: ${data.get('dropDate')}
-Total Days: ${days}
-Total Amount: ₹${total}
+  Name: ${data.get('name')}
+  Phone: ${data.get('phone')}
+  Email: ${data.get('email')}
+  DL Number: ${data.get('dl')}
+  Purpose: ${data.get('purpose')}
+  City: ${data.get('city')}
+  Car: ${carName}
+  Price/Day: ₹${carPrice}
+  Pick Date: ${data.get('pickDate')}
+  Drop Date: ${data.get('dropDate')}
+  Total Days: ${days}
+  Total Amount: ₹${total.toFixed(2)}
   `.trim();
 
-  const mailtoLink = `mailto:itakeselfcar@gmail.com?subject=Car Rental Booking&body=${encodeURIComponent(body)}`;
-  window.location.href = mailtoLink;
+  // Show the thank-you modal first
+  document.getElementById('thankYouModal').classList.remove('hidden');
+
+  // Delay redirect by 2 seconds to let user see the modal
+  setTimeout(() => {
+    const mailtoLink = `mailto:itakeselfcar@gmail.com?subject=Car Rental Booking&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+  }, 2000);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  ['pickDate', 'dropDate', 'car'].forEach(id => {
-    document.getElementById(id).addEventListener('change', updatePrice);
-  });
-});
+  </script>
+  <!-- Thank You Modal -->
+<div id="thankYouModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-70 flex items-center justify-center">
+  <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full text-center relative animate-fade-in">
+    <!-- Close Button -->
+    <button onclick="document.getElementById('thankYouModal').classList.add('hidden')" 
+            class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold transition">&times;</button>
 
-</script>
+    <!-- Icon -->
+    <div class="mb-4">
+      <svg class="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" stroke-width="2" 
+           viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" 
+              d="M9 12l2 2l4-4m-9 6a9 9 0 1118 0a9 9 0 01-18 0z" />
+      </svg>
+    </div>
+
+    <!-- Message -->
+    <h2 class="text-3xl font-extrabold text-green-600 mb-2">Booking Confirmed!</h2>
+    <p class="text-gray-600 mb-6 leading-relaxed">
+      Thank you for booking with <span class="font-semibold text-blue-600">I Take Self</span>.<br>
+      Our team will contact you shortly. You’ll be redirected in a moment.
+    </p>
+
+    <!-- Close Button -->
+    <div class="flex justify-center">
+      <button onclick="document.getElementById('thankYouModal').classList.add('hidden')" 
+              class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full shadow-md transition duration-200">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Animation Styles -->
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out;
+  }
+</style>
 
 
 </body>
