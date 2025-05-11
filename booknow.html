@@ -102,13 +102,17 @@
       <!-- Coupon Code -->
       <div>
         <label for="coupon" class="block font-medium mb-1">Coupon Code</label>
-        <input type="text" id="coupon" placeholder="Enter coupon code" class="input-style" oninput="updatePrice()">
+        <input type="text" id="coupon" name="coupon" placeholder="Enter coupon code" class="input-style" oninput="updatePrice()">
+
       </div>
 
       <!-- Price -->
       <div class="mt-4">
         <p class="text-lg font-semibold">Total Amount: <span id="total">0</span></p>
       </div>
+
+<div id="price-breakdown" class="mt-4 p-4 rounded-xl bg-gray-100 text-sm text-gray-800 shadow-sm"></div>
+
 
       <!-- Submit -->
       <button type="button" onclick="submitBooking()" class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition">
@@ -117,6 +121,24 @@
     </form>
   </div>
   <br><br><br>
+<script>
+  // Prevent selecting past dates
+  const now = new Date();
+  const localISOTime = now.toISOString().slice(0, 16); // YYYY-MM-DDTHH:mm
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const pickInput = document.getElementById('pickDate');
+    const dropInput = document.getElementById('dropDate');
+
+    pickInput.min = localISOTime;
+    dropInput.min = localISOTime;
+
+    // Optionally update drop date min when pick is chosen
+    pickInput.addEventListener('change', () => {
+      dropInput.min = pickInput.value;
+    });
+  });
+</script>
 
   <script>
     const carsByCity = {
@@ -257,8 +279,59 @@
         });
       }
 
-      updatePrice();
+//     function updatePrice() {
+//   const car = document.getElementById('car').value;
+//   const totalSpan = document.getElementById('total');
+//   const couponCode = document.getElementById('coupon').value.trim().toUpperCase();
+//   const breakdownDiv = document.getElementById('price-breakdown');
+
+//   if (!car) {
+//     totalSpan.textContent = '0';
+//     breakdownDiv.innerHTML = '';
+//     return;
+//   }
+
+//   const [carName, pricePerDay] = car.split('|');
+//   const days = getRentalDays();
+
+//   if (days === -1) {
+//     totalSpan.textContent = 'Invalid date range';
+//     breakdownDiv.innerHTML = '<p class="text-red-600">Invalid date range</p>';
+//     return;
+//   }
+
+//   if (days === 0) {
+//     totalSpan.textContent = 'Select pick & drop dates';
+//     breakdownDiv.innerHTML = '<p>Please select both pick-up and drop-off dates</p>';
+//     return;
+//   }
+
+//   let originalPrice = days * parseInt(pricePerDay);
+//   let discount = 0;
+
+//   if (couponCode === 'DISCOUNT30' || couponCode === 'ISMAIL30') {
+//     discount = originalPrice * 0.3;
+//   }
+
+//   const finalTotal = originalPrice - discount;
+
+//   totalSpan.textContent = `₹${finalTotal.toFixed(2)}`;
+
+//   // Show breakdown
+//   breakdownDiv.innerHTML = `
+//     <p>Car: <strong>${carName}</strong></p>
+//     <p>Days: ${days}</p>
+//     <p>Price/Day: ₹${parseInt(pricePerDay).toLocaleString()}</p>
+//     <p>Original Price: ₹${originalPrice.toLocaleString()}</p>
+//     <p>Discount${discount > 0 ? ' (30%)' : ''}: -₹${discount.toLocaleString()}</p>
+//     <p><strong>Total Payable: ₹${finalTotal.toLocaleString()}</strong></p>
+//   `;
+
+  
+// }
+
     }
+    
 
     function getRentalDays() {
       const pickInput = document.getElementById('pickDate').value;
@@ -274,38 +347,67 @@
       return days;
     }
 
-    function updatePrice() {
-      const car = document.getElementById('car').value;
-      const totalSpan = document.getElementById('total');
-      const couponCode = document.getElementById('coupon').value;
+   function updatePrice() {
+  const car = document.getElementById('car').value;
+  const totalSpan = document.getElementById('total');
+  const couponCode = document.getElementById('coupon').value.trim().toUpperCase();
+  const breakdownDiv = document.getElementById('price-breakdown');
 
-      if (!car) {
-        totalSpan.textContent = '0';
-        return;
-      }
+  if (!car) {
+    totalSpan.textContent = '0';
+    breakdownDiv.innerHTML = '';
+    return;
+  }
 
-      const [, pricePerDay] = car.split('|');
-      const days = getRentalDays();
+  const [carName, pricePerDay] = car.split('|');
+  const days = getRentalDays();
 
-      if (days === -1) {
-        totalSpan.textContent = 'Invalid date range';
-        return;
-      }
+  if (days === -1) {
+    totalSpan.textContent = 'Invalid date range';
+    breakdownDiv.innerHTML = '<p class="text-red-600">Invalid date range</p>';
+    return;
+  }
 
-      if (days === 0) {
-        totalSpan.textContent = 'Select pick & drop dates';
-        return;
-      }
+  if (days === 0) {
+    totalSpan.textContent = 'Select pick & drop dates';
+    breakdownDiv.innerHTML = '<p>Please select both pick-up and drop-off dates</p>';
+    return;
+  }
 
-      let total = days * parseInt(pricePerDay);
+  let originalPrice = days * parseInt(pricePerDay);
+  let discount = 0;
 
-      // Apply discount if coupon is valid
-      if (couponCode === 'ISMAIL30') {
-        total = total * 0.7;  // Apply 30% discount
-      }
+  if (couponCode === 'DISCOUNT30' || couponCode === 'ISMAIL30')
+   {
+    discount = originalPrice * 0.3;
+    // } else if (couponCode === 'ABRAR30') {
+    //     discount = originalPrice * 0.3;
+    //   } else if (couponCode === 'ROHIT30') {
+    //     discount = originalPrice * 0.3;
+    //   } else if (couponCode === 'RIZWAN30') {
+    //     discount = originalPrice * 0.3;
+  }
 
-      totalSpan.textContent = `₹${total.toFixed(2)}`;
-    }
+  const finalTotal = originalPrice - discount;
+
+  totalSpan.textContent = `₹${finalTotal.toFixed(2)}`;
+
+  // Show breakdown
+  breakdownDiv.innerHTML = `
+    <p>Car: <strong>${carName}</strong></p>
+    <p>Days: ${days}</p>
+    <p>Price/Day: ₹${parseInt(pricePerDay).toLocaleString()}</p>
+    <p>Original Price: ₹${originalPrice.toLocaleString()}</p>
+    <p>Discount${discount > 0 ? ' (30%)' : ''}: -₹${discount.toLocaleString()}</p>
+    <p><strong>Total Payable: ₹${finalTotal.toLocaleString()}</strong></p>
+  `;
+
+
+
+
+  
+}
+
 
    function submitBooking() {
   const form = document.getElementById('bookingForm');
